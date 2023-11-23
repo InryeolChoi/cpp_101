@@ -11,7 +11,7 @@ int main(int ac, char **av)
 		for (int i = 1; i < ac; i++)
 		{
 			str.assign(av[i], strlen(av[i]));
-			for (int x = 0; x < str.size(); x++)
+			for (int x = 0; x < (int)str.size(); x++)
 				str[x] = toupper(str[x]);
 			std::cout << str;
 		}
