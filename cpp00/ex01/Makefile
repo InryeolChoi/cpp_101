@@ -1,6 +1,6 @@
 NAME = phonebook
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = Contact.cpp Phonebook.cpp main.cpp
+SRCS = Contact.cpp PhoneBook.cpp main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

@@ -8,7 +8,9 @@ class PhoneBook {
 	private:
 		Contact contacts[8];
 		int		idx;
+		int		size;
 	public:
+		PhoneBook();
 		void 	AddContact(void);
 		void	SearchContact(void);
 };
