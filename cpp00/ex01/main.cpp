@@ -11,7 +11,7 @@ int main(int ac, char **av)
 		return (1);
 	}
 	std::cout << "Welcome to World of PhoneBook" << std::endl;
-	std::cout << "========================" << std::endl;
+	std::cout << "================================" << std::endl;
 	while (std::cin.good())
 	{
 		std::cout << "type the command" << std::endl;
@@ -29,6 +29,7 @@ int main(int ac, char **av)
 			if (phonebook.AddContact())
 			{
 				std::cout << "You've typed wrong" << std::endl;
+				std::cout << "================================" << std::endl;
 				continue ;
 			}
 		}
@@ -38,6 +39,6 @@ int main(int ac, char **av)
 			return (0);
 		else
 			std::cout << "wrong cmd. Please type again" << std::endl;
-		std::cout << "========================" << std::endl;
+		std::cout << "================================" << std::endl;
 	}
 }

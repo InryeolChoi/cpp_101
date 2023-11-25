@@ -28,11 +28,7 @@ int	Contact::check_str(std::string str, int check)
 		if (str[x] < 32 || str[x] > 126)
 			return (1);
 	}
-	if (str.length() >= 10 && check == SUBSTR)
-	{
-		str = str.substr(0, 8);
-		str.append(".");
-	}
+	(void) check;
 	return (0);
 }
 
@@ -43,6 +39,11 @@ int	Contact::check_str(std::string str)
 	for (size_t x = 0; x < str.length(); x++) {
 		if (str[x] < 32 || str[x] > 126)
 			return (1);
+	}
+	if (str.length() >= 10)
+	{
+		str = str.substr(0, 9);
+		str += ".";
 	}
 	return (0);
 }
@@ -55,6 +56,11 @@ int	Contact::set_fname(void)
 	getline(std::cin, str);
 	if (check_str(str, SUBSTR))
 		return (1);
+	if (str.length() >= 10)
+	{
+		str = str.substr(0, 9);
+		str += ".";
+	}
 	this->first_name = str;
 	return (0);
 }
@@ -67,6 +73,11 @@ int	Contact::set_lname(void)
 	getline(std::cin, str);
 	if (check_str(str, SUBSTR))
 		return (1);
+	if (str.length() >= 10)
+	{
+		str = str.substr(0, 9);
+		str += ".";
+	}
 	this->last_name = str;
 	return (0);
 }
@@ -79,6 +90,11 @@ int	Contact::set_nickname(void)
 	getline(std::cin, str);
 	if (check_str(str, SUBSTR))
 		return (1);
+	if (str.length() >= 10)
+	{
+		str = str.substr(0, 9);
+		str += ".";
+	}
 	this->nickname = str;
 	return (0);
 }
