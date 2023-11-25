@@ -13,17 +13,17 @@ int	PhoneBook::AddContact(void)
 	if (idx > 8)
 		idx = 0;
 	if (contacts[idx].set_fname())
-		return ();
+		return (1);
 	if (contacts[idx].set_lname())
-		return ();
+		return (1);
 	if (contacts[idx].set_nickname())
-		return ();
+		return (1);
 	if (contacts[idx].set_pnum())
-		return ();	
+		return (1);	
 	if (contacts[idx].set_secret())
-		return ();
-	size++;
-	idx++;
+		return (1);
+	size++; idx++;
+	return (0);
 }
 
 void	PhoneBook::SearchContact(void)
@@ -32,13 +32,15 @@ void	PhoneBook::SearchContact(void)
 		std::cout << "No contact has been uploaded" << std::endl;
 	else
 	{
-		std::cout << "index | first name | last name | nickname | phone number | secret" << std::endl;
+		std::cout << std::setw(10) << "index | ";
+		std::cout << std::setw(10) << "first name | ";
+		std::cout << std::setw(10) << "last name | ";
+		std::cout << std::setw(10) << "nickname" << std::endl;
 		for (int i = 0; i < size; i++) {
-			std::cout << contacts[i].get_fname() << " | ";
-			std::cout << contacts[i].get_lname() << " | ";
-			std::cout << contacts[i].get_nickname() << " | ";
-			std::cout << contacts[i].get_pnum() << " | ";
-			std::cout << contacts[i].get_secret() << std::endl;
+			std::cout << std::setw(10) << i << " | ";
+			std::cout << std::setw(10) << contacts[i].get_fname() << " | ";
+			std::cout << std::setw(10) << contacts[i].get_lname() << " | ";
+			std::cout << std::setw(10) << contacts[i].get_nickname() << std::endl;
 		}
 	}
 }

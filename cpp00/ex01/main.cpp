@@ -15,19 +15,26 @@ int main(int ac, char **av)
 	while (std::cin.good())
 	{
 		std::cout << "type the command" << std::endl;
-		std::cout << "(option : add, search, exit)" << std::endl;
+		std::cout << "(option : ADD, SEARCH, EXIT)" << std::endl;
 		std::cout << "cmd > ";
 		getline(std::cin, cmd);
 		if (!std::cin.good())
 		{
+			std::cin.ignore(INT_MAX, '\n');
 			std::cout << std::endl;
 			break ;
 		}
-		if (cmd == "add")
-			phonebook.AddContact();
-		else if (cmd == "search")
+		if (cmd == "ADD") 
+		{
+			if (phonebook.AddContact())
+			{
+				std::cout << "You've typed wrong" << std::endl;
+				continue ;
+			}
+		}
+		else if (cmd == "SEARCH")
 			phonebook.SearchContact();
-		else if (cmd == "exit")
+		else if (cmd == "EXIT")
 			return (0);
 		else
 			std::cout << "wrong cmd. Please type again" << std::endl;

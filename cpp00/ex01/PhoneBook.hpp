@@ -3,6 +3,8 @@
 
 # include "Contact.hpp"
 # include <iostream>
+# include <iomanip>
+# include <climits>
 
 class PhoneBook {
 	private:
