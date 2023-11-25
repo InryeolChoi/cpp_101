@@ -20,57 +20,47 @@ std::string Contact::get_secret() {
 	return (this->darkest_secret);
 }
 
-void	Contact::set_fname(void)
+int	Contact::set_fname(void)
 {
-	int			n;
 	std::string str;
 
-	std::cin >> n;
 	getline(std::cin, str);
-	std::cin.ignore();
 	this->first_name = str;
+	return (0);
 }
 
-void	Contact::set_lname(void)
+int	Contact::set_lname(void)
 {
-	int			n;
 	std::string str;
 
-	std::cin >> n;
 	getline(std::cin, str);
-	std::cin.ignore();
 	this->last_name = str;
+	return (0);
 }
 
-void	Contact::set_nickname(void)
+int	Contact::set_nickname(void)
 {
-	int			n;
 	std::string str;
 
-	std::cin >> n;
 	getline(std::cin, str);
-	std::cin.ignore();
 	this->nickname = str;
+	return (0);
 }
 
-void	Contact::set_pnum(void)
+int	Contact::set_pnum(void)
 {
-	int			n;
 	std::string str;
 
-	std::cin >> n;
 	getline(std::cin, str);
-	std::cin.ignore();
 	this->phone_number = str;
+	return (0);
 }
 
-void	Contact::set_secret(void)
+int	Contact::set_secret(void)
 {
-	int			n;
 	std::string str;
 
-	std::cin >> n;
 	getline(std::cin, str);
-	std::cin.ignore();
 	this->darkest_secret = str;
+	return (0);
 }

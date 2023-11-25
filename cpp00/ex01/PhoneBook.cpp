@@ -6,17 +6,22 @@ PhoneBook::PhoneBook()
 	size = 0;
 }
 
-void	PhoneBook::AddContact(void)
+int	PhoneBook::AddContact(void)
 {
 	std::string str;
 
 	if (idx > 8)
 		idx = 0;
-	contacts[idx].set_fname();
-	contacts[idx].set_lname();
-	contacts[idx].set_nickname();
-	contacts[idx].set_pnum();
-	contacts[idx].set_secret();
+	if (contacts[idx].set_fname())
+		return ();
+	if (contacts[idx].set_lname())
+		return ();
+	if (contacts[idx].set_nickname())
+		return ();
+	if (contacts[idx].set_pnum())
+		return ();	
+	if (contacts[idx].set_secret())
+		return ();
 	size++;
 	idx++;
 }

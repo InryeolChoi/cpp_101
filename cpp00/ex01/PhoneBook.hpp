@@ -11,7 +11,7 @@ class PhoneBook {
 		int		size;
 	public:
 		PhoneBook();
-		void 	AddContact(void);
+		int 	AddContact(void);
 		void	SearchContact(void);
 };
 
