@@ -1,6 +1,6 @@
 NAME = megaphone
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = megaphone.cpp main.cpp
+SRCS = megaphone.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
