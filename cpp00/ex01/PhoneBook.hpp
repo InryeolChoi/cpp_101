@@ -1,16 +1,15 @@
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#pragma once
 
 # include "Contact.hpp"
 # include <iostream>
 # include <iomanip>
-# include <string>
+# include <sstream>
 
 class PhoneBook {
 	private:
 		Contact contacts[8];
 		int		idx;
-		int		size;
+		size_t	size;
 		void	TableOfContact(void);
 		int		FindContact(void);
 	public:
@@ -18,5 +17,3 @@ class PhoneBook {
 		int 	AddContact(void);
 		int		SearchContact(void);
 };
-
-#endif

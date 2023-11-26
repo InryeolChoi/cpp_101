@@ -20,24 +20,12 @@ std::string Contact::get_secret() {
 	return (this->darkest_secret);
 }
 
-int	Contact::check_str(std::string str, int check)
-{
-	if (str.empty() || str.find(" ") != std::string::npos)
-		return (1);
-	for (size_t x = 0; x < str.length(); x++) {
-		if (str[x] < 32 || str[x] > 126)
-			return (1);
-	}
-	(void) check;
-	return (0);
-}
-
 int	Contact::check_str(std::string str)
 {
 	if (str.empty() || str.find(" ") != std::string::npos)
 		return (1);
 	for (size_t x = 0; x < str.length(); x++) {
-		if (str[x] < 32 || str[x] > 126)
+		if (!(std::isprint(str[x])))
 			return (1);
 	}
 	return (0);
@@ -49,7 +37,7 @@ int	Contact::set_fname(void)
 
 	std::cout << "first name : ";
 	getline(std::cin, str);
-	if (check_str(str, SUBSTR))
+	if (check_str(str))
 		return (1);
 	this->first_name = str;
 	return (0);
@@ -61,7 +49,7 @@ int	Contact::set_lname(void)
 
 	std::cout << "last name : ";
 	getline(std::cin, str);
-	if (check_str(str, SUBSTR))
+	if (check_str(str))
 		return (1);
 	this->last_name = str;
 	return (0);
@@ -73,7 +61,7 @@ int	Contact::set_nickname(void)
 
 	std::cout << "nickname : ";
 	getline(std::cin, str);
-	if (check_str(str, SUBSTR))
+	if (check_str(str))
 		return (1);
 	this->nickname = str;
 	return (0);

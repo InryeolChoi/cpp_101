@@ -1,6 +1,4 @@
 #pragma once
-# define CONTACT_HPP
-# define SUBSTR 1
 # include <iostream>
 
 class Contact {
@@ -10,7 +8,6 @@ class Contact {
 		std::string nickname;
 		std::string phone_number;
 		std::string darkest_secret;
-		int			check_str(std::string str, int check);
 		int			check_str(std::string str);
 
 	public:

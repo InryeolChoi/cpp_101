@@ -1,5 +1,4 @@
 #include <iostream>
-#include <string>
 
 int main(int ac, char **av)
 {
@@ -7,14 +6,15 @@ int main(int ac, char **av)
 		std::cout << "* LOUD AND UNBEARABLE FEEDBACK NOISE *" << std::endl;
 	else
 	{
-		std::string str;
 		for (int i = 1; i < ac; i++)
 		{
-			str.assign(av[i], strlen(av[i]));
-			for (int x = 0; x < (int)str.size(); x++)
-				str[x] = std::toupper(str[x]);
+			std::string str(av[i]);
+			std::string::iterator it;
+			for (it = str.begin(); it != str.end(); ++it)
+                *it = static_cast<char>(std::toupper(static_cast<unsigned char>(*it)));
 			std::cout << str;
 		}
 		std::cout << std::endl;
 	}
+	return (0);
 }

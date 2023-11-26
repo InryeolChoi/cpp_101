@@ -1,10 +1,6 @@
 #include "PhoneBook.hpp"
 
-PhoneBook::PhoneBook()
-{
-	idx = 0;
-	size = 0;
-}
+PhoneBook::PhoneBook() : idx(0), size(0) {}
 
 int	PhoneBook::AddContact(void)
 {
@@ -36,7 +32,7 @@ void	PhoneBook::TableOfContact()
 	std::cout << std::setw(10) << "first name" << " | ";
 	std::cout << std::setw(10) << "last name" << " | ";
 	std::cout << std::setw(10) << "nickname" << std::endl;
-	for (int i = 0; i < size; i++) {
+	for (size_t i = 0; i < size; i++) {
 		std::string fname = contacts[i].get_fname();
 		std::string lname = contacts[i].get_lname();
 		std::string nickname = contacts[i].get_nickname();
@@ -67,21 +63,33 @@ int	PhoneBook::FindContact()
 
 	std::cout << "which one do you want to select? ";
 	getline(std::cin, cmd);
-	if (cmd.empty() || cmd.find(" ") != std::string::npos || \
-		cmd.size() != 1 || !(cmd[0] - '0' >= 0 && cmd[0] - '0' <= 9))
+	if (cmd.empty() || cmd.find(" ") != std::string::npos || cmd.size() != 1)
 	{
 		std::cout << "You've typed wrong number" << std::endl;
 		std::cout << "================================" << std::endl;
 		return (1);
 	}
-	std::cout << " first name : " << contacts[stoi(cmd)].get_fname() << std::endl;
-	std::cout << " last name : " << contacts[stoi(cmd)].get_lname() << std::endl;
-	std::cout << " nickname : " << contacts[stoi(cmd)].get_nickname() << std::endl;
-	std::cout << " phone number : " << contacts[stoi(cmd)].get_pnum() << std::endl;
-	std::cout << " darkest secret : " << contacts[stoi(cmd)].get_secret() << std::endl;
+	std::istringstream iss(cmd);
+	int index;
+	if (!(iss >> index))
+	{
+		std::cout << "invalid index has come out" << std::endl;
+		std::cout << "================================" << std::endl;
+		return (1);
+	}
+	if (index > static_cast<int>(size))
+	{
+		std::cout << "You've typed wrong number" << std::endl;
+		std::cout << "================================" << std::endl;
+		return (1);
+	}
+	std::cout << " first name : " << contacts[index].get_fname() << std::endl;
+	std::cout << " last name : " << contacts[index].get_lname() << std::endl;
+	std::cout << " nickname : " << contacts[index].get_nickname() << std::endl;
+	std::cout << " phone number : " << contacts[index].get_pnum() << std::endl;
+	std::cout << " darkest secret : " << contacts[index].get_secret() << std::endl;
 	return (0);
 }
-
 
 int	PhoneBook::SearchContact(void)
 {
