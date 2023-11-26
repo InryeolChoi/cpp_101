@@ -49,7 +49,7 @@ void	 Account::displayAccountsInfos()
 	std::cout << " accounts:" << Account::_nbAccounts << ";";
 	std::cout << "total:" << Account::_totalAmount << ";";
 	std::cout << "deposits:" << Account::_totalNbDeposits << ";";
-	std::cout << "withdrawls:" << Account::_totalNbWithdrawals << std::endl;
+	std::cout << "withdrawals:" << Account::_totalNbWithdrawals << std::endl;
 }
 
 // 출력
@@ -104,7 +104,7 @@ bool	Account::makeWithdrawal(int withdrawal) // 출금
 		_nbWithdrawals++;
 		std::cout << "withdrawal:" << withdrawal << ";";
 		std::cout << "amount:" << _amount << ";";
-		std::cout << "nb_withdrawls:" << _nbWithdrawals << std::endl;
+		std::cout << "nb_withdrawals:" << _nbWithdrawals << std::endl;
 		_totalNbWithdrawals++;
 		Account::_totalAmount -= withdrawal;
 		return (true);
@@ -123,5 +123,5 @@ Account::~Account()
 	Account::_displayTimestamp();
 	std::cout << " index:" << _accountIndex << ";";
 	std::cout << "amount:" << _amount << ";";
-	std::cout << "closed" << ";"<< std::endl;
+	std::cout << "closed" << std::endl;
 }
