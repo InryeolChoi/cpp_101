@@ -74,7 +74,7 @@ void	Account::makeDeposit(int deposit) // 예금
 
 	std::cout << " index:" << _accountIndex << ";";
 	std::cout << "p_amount:" << p_amount << ";";
-	std::cout << "deposits:" << deposit << ";";
+	std::cout << "deposit:" << deposit << ";";
 	std::cout << "amount:" << _amount << ";";
 	std::cout << "nb_deposits:" << _nbDeposits <<std::endl;
 	Account::_totalNbDeposits++;
@@ -104,7 +104,7 @@ bool	Account::makeWithdrawal(int withdrawal) // 출금
 		_nbWithdrawals++;
 		std::cout << "withdrawal:" << withdrawal << ";";
 		std::cout << "amount:" << _amount << ";";
-		std::cout << "nb_withdrawls" << _nbWithdrawals << std::endl;
+		std::cout << "nb_withdrawls:" << _nbWithdrawals << std::endl;
 		_totalNbWithdrawals++;
 		Account::_totalAmount -= withdrawal;
 		return (true);

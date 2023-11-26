@@ -1,5 +1,5 @@
 #include <iostream>
-#include <cstring>
+#include <string>
 
 int main(int ac, char **av)
 {
@@ -12,7 +12,7 @@ int main(int ac, char **av)
 		{
 			str.assign(av[i], strlen(av[i]));
 			for (int x = 0; x < (int)str.size(); x++)
-				str[x] = toupper(str[x]);
+				str[x] = std::toupper(str[x]);
 			std::cout << str;
 		}
 		std::cout << std::endl;

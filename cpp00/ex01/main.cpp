@@ -20,7 +20,6 @@ int main(int ac, char **av)
 		getline(std::cin, cmd);
 		if (!std::cin.good())
 		{
-			std::cin.ignore(INT_MAX, '\n');
 			std::cout << std::endl;
 			break ;
 		}
@@ -34,7 +33,10 @@ int main(int ac, char **av)
 			}
 		}
 		else if (cmd == "SEARCH")
-			phonebook.SearchContact();
+		{
+			if (phonebook.SearchContact())
+				continue ;
+		}
 		else if (cmd == "EXIT")
 			return (0);
 		else

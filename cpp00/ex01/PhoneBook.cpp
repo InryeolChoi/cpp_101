@@ -29,23 +29,69 @@ int	PhoneBook::AddContact(void)
 	return (0);
 }
 
-void	PhoneBook::SearchContact(void)
+void	PhoneBook::TableOfContact()
+{
+	std::cout << std::endl;
+	std::cout << std::setw(10) << "index" << " | ";
+	std::cout << std::setw(10) << "first name" << " | ";
+	std::cout << std::setw(10) << "last name" << " | ";
+	std::cout << std::setw(10) << "nickname" << std::endl;
+	for (int i = 0; i < size; i++) {
+		std::string fname = contacts[i].get_fname();
+		std::string lname = contacts[i].get_lname();
+		std::string nickname = contacts[i].get_nickname();
+
+		if (fname.length() > 10) {
+			fname = fname.substr(0, 9);
+			fname += ".";
+		}
+		if (lname.length() > 10) {
+			lname = lname.substr(0, 9);
+			lname += ".";
+		}
+		if (nickname.length() > 10) {
+			nickname = nickname.substr(0, 9);
+			nickname += ".";
+		}
+		std::cout << std::setw(10) << i << " | ";
+		std::cout << std::setw(10) << fname << " | ";
+		std::cout << std::setw(10) << lname << " | ";
+		std::cout << std::setw(10) << nickname << std::endl;
+	}
+	std::cout << std::endl;
+}
+
+int	PhoneBook::FindContact()
+{
+	std::string cmd;
+
+	std::cout << "which one do you want to select? ";
+	getline(std::cin, cmd);
+	if (cmd.empty() || cmd.find(" ") != std::string::npos || \
+		cmd.size() != 1 || !(cmd[0] - '0' >= 0 && cmd[0] - '0' <= 9))
+	{
+		std::cout << "You've typed wrong number" << std::endl;
+		std::cout << "================================" << std::endl;
+		return (1);
+	}
+	std::cout << " first name : " << contacts[stoi(cmd)].get_fname() << std::endl;
+	std::cout << " last name : " << contacts[stoi(cmd)].get_lname() << std::endl;
+	std::cout << " nickname : " << contacts[stoi(cmd)].get_nickname() << std::endl;
+	std::cout << " phone number : " << contacts[stoi(cmd)].get_pnum() << std::endl;
+	std::cout << " darkest secret : " << contacts[stoi(cmd)].get_secret() << std::endl;
+	return (0);
+}
+
+
+int	PhoneBook::SearchContact(void)
 {
 	if (size == 0)
 		std::cout << "No contact has been uploaded" << std::endl;
 	else
 	{
-		std::cout << std::endl;
-		std::cout << std::setw(10) << "index" << " | ";
-		std::cout << std::setw(10) << "first name" << " | ";
-		std::cout << std::setw(10) << "last name" << " | ";
-		std::cout << std::setw(10) << "nickname" << std::endl;
-		for (int i = 0; i < size; i++) {
-			std::cout << std::setw(10) << i + 1 << " | ";
-			std::cout << std::setw(10) << contacts[i].get_fname() << " | ";
-			std::cout << std::setw(10) << contacts[i].get_lname() << " | ";
-			std::cout << std::setw(10) << contacts[i].get_nickname() << std::endl;
-		}
-		std::cout << std::endl;
+		TableOfContact();
+		if (FindContact())
+			return (1);
 	}
+	return (0);
 }

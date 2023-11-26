@@ -4,17 +4,19 @@
 # include "Contact.hpp"
 # include <iostream>
 # include <iomanip>
-# include <climits>
+# include <string>
 
 class PhoneBook {
 	private:
 		Contact contacts[8];
 		int		idx;
 		int		size;
+		void	TableOfContact(void);
+		int		FindContact(void);
 	public:
 		PhoneBook();
 		int 	AddContact(void);
-		void	SearchContact(void);
+		int		SearchContact(void);
 };
 
 #endif
