@@ -20,7 +20,7 @@ int main()
 
 	zombieX = newZombie("zombieX");
 	zombieX->announce();
-	delete(zombieX);
+	delete zombieX;
 
 	return (0);
 }

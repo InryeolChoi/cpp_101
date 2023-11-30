@@ -2,23 +2,28 @@
 
 FileChange::FileChange() {}
 
-FileChange::FileChange(char *filename, char *s1, char *s2) 
-: filename(filename), s1(s1), s2(s2), 
-	infile(this->filename.c_str(), std::ios::in),
-	outfile((this->filename + ".replace").c_str(), std::ios::out)
+FileChange::FileChange(std::string filename, std::string s1, std::string s2)
+: filename(filename), s1(s1), s2(s2),
+	infile(filename.c_str(), std::ios::in),
+	outfile((filename + ".replace").c_str(), std::ios::out)
 {}
 
-int FileChange::open()
+int FileChange::check_param()
 {
 	if (!infile.is_open() || !outfile.is_open())
 	{
 		std::cerr << "file doesn't open well" << std::endl;
 		return (1);
 	}
+	if (s1 == "")
+	{
+		std::cout << "please type with the characters" << std::endl;
+		return (1);
+	}
 	return (0);
 }
 
-void FileChange::set_new()
+void FileChange::set_new_file()
 {
 	while (std::getline(infile, line))
 	{

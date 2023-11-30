@@ -9,8 +9,8 @@ int main(int ac, char **av)
 	}
 
 	FileChange fc(av[1], av[2], av[3]);
-	if (fc.open() == 1)
+	if (fc.check_param() == 1)
 		return (1);
-	fc.set_new();
+	fc.set_new_file();
 	return (0);
 }

@@ -14,8 +14,8 @@ class FileChange
 
 	public:
 		FileChange();
-		FileChange(char *filename, char *s1, char *s2);
+		FileChange(std::string filename, std::string s1, std::string s2);
 		~FileChange();
-		int		open(void);
-		void	set_new();
+		int		check_param(void);
+		void	set_new_file();
 };

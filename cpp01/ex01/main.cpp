@@ -10,7 +10,7 @@ int main()
 	horde = zombieHorde(n, "zombie");
 	for (int i = 0; i < n; i++)
 		horde[i].announce();
-	delete[] horde;
+	delete[] (horde);
 
 	return (0);
 }
