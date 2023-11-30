@@ -1,5 +1,6 @@
 #pragma once
 # include <iostream>
+# include <sstream>
 
 class Zombie
 {
@@ -9,8 +10,8 @@ class Zombie
 		Zombie(void);
 		Zombie(std::string name);
 		~Zombie(void);
+		void	setName(std::string name);
 		void	announce(void);
 };
 
-Zombie* newZombie(std::string name);
-void	randomChump(std::string name);
+Zombie *zombieHorde(int n, std::string name);

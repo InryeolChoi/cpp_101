@@ -1,6 +1,6 @@
-NAME = zombie
+NAME = thisIsBrain
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

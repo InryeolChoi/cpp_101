@@ -1,6 +1,6 @@
-NAME = zombie
+NAME = file_transform
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp FileChange.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
@@ -10,6 +10,7 @@ $(NAME) : $(OBJS)
 
 clean : 
 	rm -rf $(OBJS)
+	rm -rf *.replace
 
 fclean : clean
 	rm -rf $(NAME)

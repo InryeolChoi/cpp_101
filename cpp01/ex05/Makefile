@@ -1,6 +1,6 @@
-NAME = zombie
+NAME = harl
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Zombie.cpp zombieHorde.cpp
+SRCS = main.cpp Harl.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
