@@ -11,6 +11,8 @@ int main()
 	zombie1.announce();
 	zombie2.announce();
 	zombie3.announce();
+
+	// random으로 만든 좀비
 	randomChump("randomChump");
 	std::cout << std::endl;
 

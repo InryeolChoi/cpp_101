@@ -25,9 +25,15 @@ void	Harl::complain(std::string input)
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*f[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
+	int check = 0;
 	for (int i = 0; i < 4; i++)
 	{
 		if (levels[i] == input)
+		{
+			check = 1;
 			(this->*f[i])();
+		}
 	}
+	if (check == 0)
+		std::cout << "Undefined Level" << std::endl;
 }
