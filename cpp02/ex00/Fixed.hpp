@@ -4,8 +4,8 @@
 class Fixed
 {
 	private:
-		int value;
-		static const int frac_bits;
+		int value;					// 값
+		static const int bits = 8;	// 비트
 	public:
 		Fixed();
 		Fixed(const Fixed &f);
