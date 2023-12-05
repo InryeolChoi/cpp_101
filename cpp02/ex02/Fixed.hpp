@@ -26,24 +26,24 @@ class Fixed
 		int		toInt(void) const;
 
 		// ex02, 비교 연산자, 6개
-		bool	operator>(Fixed const &f) const;
-		bool	operator<(Fixed const &f) const;
-		bool	operator>=(Fixed const &f) const;
-		bool	operator<=(Fixed const &f) const;
-		bool	operator==(Fixed const &f) const;
-		bool	operator!=(Fixed const &f) const;
+		bool		operator>(Fixed const &f) const;
+		bool		operator<(Fixed const &f) const;
+		bool		operator>=(Fixed const &f) const;
+		bool		operator<=(Fixed const &f) const;
+		bool		operator==(Fixed const &f) const;
+		bool		operator!=(Fixed const &f) const;
 
 		// ex02, 산수 연산자, 4개
-		Fixed	operator+(Fixed const &f) const;
-		Fixed	operator-(Fixed const &f) const;
-		Fixed	operator*(Fixed const &f) const;
-		Fixed	operator/(Fixed const &f) const;
+		Fixed		operator+(Fixed const &f) const;
+		Fixed		operator-(Fixed const &f) const;
+		Fixed		operator*(Fixed const &f) const;
+		Fixed		operator/(Fixed const &f) const;
 
 		// ex02, 증감 연산자, 4개
-		Fixed	&operator++(void);		// 전위, 증가
-		Fixed	&operator--(void);		// 전위, 감소
-		Fixed	operator++(int n); 		// 후위, 증가
-		Fixed	operator--(int n); 		// 후위, 감소
+		Fixed		&operator++(void);		// 전위, 증가
+		Fixed		&operator--(void);		// 전위, 감소
+		const Fixed	operator++(int n); 		// 후위, 증가
+		const Fixed	operator--(int n); 		// 후위, 감소
 
 		// ex02, min과 max, 4개
 		static Fixed &min(Fixed &a, Fixed &b);

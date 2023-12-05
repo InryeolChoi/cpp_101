@@ -3,10 +3,10 @@
 
 int main( void )
 {
-	Point a(5, 5);
-	Point b(2, 8);
-	Point c(0, 7);
-	Point p(3, 1);
+	Point a(5, 0);
+	Point b(0, 0);
+	Point c(0, 5);
+	Point p(0, 3);
 
 	std::cout << "a, b, c are points in triangle" << std::endl;
 	std::cout << "a = (" << a.getX() << ", " << a.getY() << ")" << std::endl;

@@ -139,7 +139,7 @@ Fixed &Fixed::operator--(void) // 전위, 감소
 	return (*this);
 }
 
-Fixed Fixed::operator++(int) // 후위, 증가
+const Fixed Fixed::operator++(int) // 후위, 증가
 {
 	Fixed result = *this;
 
@@ -147,14 +147,13 @@ Fixed Fixed::operator++(int) // 후위, 증가
 	return (result);
 }
 
-Fixed Fixed::operator--(int) // 후위, 감소
+const Fixed Fixed::operator--(int) // 후위, 감소
 {
 	Fixed result = *this;
 
 	(this->value) -= 1;
 	return (result);
 }
-
 
 // ex02, min과 max
 Fixed &Fixed::min(Fixed &a, Fixed &b)
