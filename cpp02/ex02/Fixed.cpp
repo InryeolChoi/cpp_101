@@ -1,7 +1,7 @@
 #include "Fixed.hpp"
 
 // Orthodox Canonical form
-Fixed::Fixed() {}
+Fixed::Fixed() : value(0) {}
 
 Fixed::Fixed(const Fixed &f)
 {
@@ -104,25 +104,25 @@ bool Fixed::operator!=(Fixed const &f) const
 // ex02, 산수 연산자, 4개
 Fixed	Fixed::operator+(Fixed const &f) const
 {
-	Fixed result(this->getRawBits() + f.getRawBits());
+	Fixed result(this->toFloat() + f.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator-(Fixed const &f) const
 {
-	Fixed result(this->getRawBits() - f.getRawBits());
+	Fixed result(this->toFloat() - f.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator*(Fixed const &f) const
 {
-	Fixed result(this->getRawBits() * f.getRawBits());
+	Fixed result(this->toFloat() * f.toFloat());
 	return (result);
 }
 
 Fixed	Fixed::operator/(Fixed const &f) const
 {
-	Fixed result(this->getRawBits() / f.getRawBits());
+	Fixed result(this->toFloat() / f.toFloat());
 	return (result);
 }
 
