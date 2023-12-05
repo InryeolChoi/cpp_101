@@ -1,24 +1,47 @@
 #include "ClapTrap.hpp"
 
-class ClapTrap
+// Orthodox Canonical Form
+ClapTrap::ClapTrap() : name(), hitpoints(10), energy(10), damage(0) {}
+
+ClapTrap::ClapTrap(const ClapTrap &other)
 {
-	public:
-		// orthodox canonical form
-		ClapTrap();
-		ClapTrap(const ClapTrap &clap);
-		ClapTrap &operator=(const ClapTrap &clap);
-		~ClapTrap();
+	this->name = other.name;
+	this->hitpoints = other.hitpoints;
+	this->energy = other.energy;
+	this->damage = other.damage;
+}
 
-		// member 
+ClapTrap &ClapTrap::operator=(const ClapTrap &other)
+{
+	if (this != &other)
+	{
+		this->name = other.name;
+		this->hitpoints = other.hitpoints;
+		this->energy = other.energy;
+		this->damage = other.damage;
+	}
+	return (*this);
+}
 
-		// member function
-		void attack(const std::string &target);
-		void takeDamage(unsigned int amount);
-		void beRepaired(unsigned int amount);
-};
+ClapTrap::~ClapTrap() {}
 
+// ex00 : member function
+void	ClapTrap::attack(const std::string &target)
+{
+	if (hitpoints > 0 || energy > 0)
+	{
+		std::cout << "ClapTrap " << name << " attacks " << target 
+		<< ", causing " << damage << " points of damage!";
+		energy--;
+	}
+}
 
+void	ClapTrap::takeDamage(unsigned int amount)
+{
 
-if (ft_check_arg())
-	return (1);
-if ()
+}
+
+void	ClapTrap::beRepaired(unsigned int amount)
+{
+	energy++;
+}
