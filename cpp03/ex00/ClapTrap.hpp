@@ -5,10 +5,10 @@ class ClapTrap
 {
 	private:
 		// member variable
-		std::string name;
-		int	hitpoints;
-		int	energy;
-		int	AttackDamage;
+		std::string 	name;
+		unsigned int	hitpoints;
+		unsigned int	energy;
+		unsigned int	AttackDamage;
 
 	public:
 		// orthodox canonical form
@@ -18,6 +18,7 @@ class ClapTrap
 		~ClapTrap();
 
 		// member function
+		ClapTrap(std::string name);
 		void attack(const std::string &target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);

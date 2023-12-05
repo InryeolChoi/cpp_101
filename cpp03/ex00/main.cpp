@@ -1,13 +1,10 @@
 #include "ClapTrap.hpp"
 
-int main(int ac, char **av)
+int main(void)
 {
-	ClapTrap a;
-	ClapTrap b;
+	ClapTrap a("A");
 
-	a.attack(b);
-	b.attack(a);
-	a.beRepaired();
-	b.attack();
-
+	a.beRepaired(7);
+	a.attack("B");
+	a.takeDamage(3);
 }
