@@ -3,7 +3,7 @@
 
 class ClapTrap
 {
-	private:
+	protected:
 		// member variable
 		std::string 	name;
 		unsigned int	hitpoints;
@@ -12,15 +12,18 @@ class ClapTrap
 
 	public:
 		// orthodox canonical form
-		ClapTrap(std::string name);
+		ClapTrap();
 		ClapTrap(const ClapTrap &other);
 		ClapTrap &operator=(const ClapTrap &other);
-		~ClapTrap();
+		virtual ~ClapTrap();	// virtual로 변경
 
-		// member function
+		// ex00 : member function
+		ClapTrap(std::string name);
 		unsigned int getDamage(void);
-		void attack(const std::string &target);
+		virtual void attack(const std::string &target); // virtual로 변경
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
+
+		// ex01 : member function
 };
 

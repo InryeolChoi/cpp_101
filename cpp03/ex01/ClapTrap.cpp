@@ -91,3 +91,5 @@ void	ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "It has now " << hitpoints << " hitpoints." << std::endl;
 	}
 }
+
+// ex01 : member function

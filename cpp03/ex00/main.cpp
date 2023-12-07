@@ -2,9 +2,22 @@
 
 int main(void)
 {
-	ClapTrap a("A");
+	ClapTrap a("a");
+	ClapTrap b("b");
 
-	a.beRepaired(7);
-	a.attack("B");
-	a.takeDamage(3);
+	// a -> b
+	a.attack("b");
+	b.takeDamage(a.getDamage());
+
+	// b repairs itself
+	b.beRepaired(3);
+
+	// b -> a
+	b.attack("a");
+	a.takeDamage(a.getDamage());
+
+	// a repairs itself
+	a.beRepaired(2);
+
+	return 0;
 }
