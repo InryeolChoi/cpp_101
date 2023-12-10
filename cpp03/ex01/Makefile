@@ -1,4 +1,4 @@
-NAME = claptrap
+NAME = ex01
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
 SRCS = main.cpp ClapTrap.cpp ScavTrap.cpp
 OBJS = $(SRCS:.cpp=.o)

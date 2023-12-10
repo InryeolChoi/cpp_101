@@ -17,7 +17,7 @@ class ClapTrap
 		ClapTrap &operator=(const ClapTrap &other);
 		virtual ~ClapTrap();
 
-		// member function
+		// ex00 : member function
 		ClapTrap(std::string name);
 		unsigned int getDamage(void);
 		void attack(const std::string &target);

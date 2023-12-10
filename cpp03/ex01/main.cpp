@@ -2,16 +2,25 @@
 
 int main(void)
 {
-	ScavTrap A;
-	ScavTrap B;
+	std::string s1 = "Peter";
+	std::string s2 = "John";
+	ClapTrap claptrap(s1);
+	ScavTrap scavtrap(s2);
+	std::cout << std::endl;
 
-	A.attack();
-	B.takeDamage();
-	B.beRepaired();
+	claptrap.attack(s2);
+	scavtrap.takeDamage(0);
+	scavtrap.beRepaired(18);
+	std::cout << std::endl;
 
-	B.attack();
-	A.takeDamage();
-	A.beRepaired();
+	scavtrap.attack(s1);
+	claptrap.takeDamage(20);
+	scavtrap.attack(s1);
+	claptrap.beRepaired(42);
+	std::cout << std::endl;
 
-	A.guardGate();
+	scavtrap.guardGate();
+	std::cout << std::endl;
+
+	return (0);
 }

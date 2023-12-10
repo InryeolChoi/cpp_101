@@ -1,6 +1,6 @@
-NAME = ex00
+NAME = exe_fragtrap
 CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp ClapTrap.cpp
+SRCS = main.cpp ClapTrap.cpp FragTrap.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

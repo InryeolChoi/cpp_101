@@ -1,7 +1,7 @@
 #pragma once
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap
+class ScavTrap : virtual public ClapTrap
 {
 	public:
 		// Orthodox Canonical form
@@ -13,7 +13,4 @@ class ScavTrap : public ClapTrap
 		// member function
 		ScavTrap(std::string name);
 		void guardGate();
-
-		// 오버라이딩
-		void attack(const std::string &target);
 };
