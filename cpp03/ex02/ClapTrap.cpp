@@ -66,6 +66,11 @@ void	ClapTrap::takeDamage(unsigned int amount)
 		std::cout << "ClapTrap " << name << " attacked, ";
 		std::cout << "and is not quite well..";
 	}
+	else if (amount == 0)
+	{
+		std::cout << "ClapTrap " << name << " is not attacked, ";
+		std::cout << "and has " << EnergyPoints << " left.";		
+	}
 	else
 	{
 		EnergyPoints -= amount;

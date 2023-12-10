@@ -7,12 +7,12 @@ ScavTrap::ScavTrap() : ClapTrap("default")
 	hitpoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
-	std::cout << "ScavTrap " << name << " is created." << std::endl;
+	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << name << " is now dead." << std::endl;
+	std::cout << "ScavTrap " << name << " destructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
@@ -42,27 +42,10 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	hitpoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
-	std::cout << "ScavTrap " << name << " is created." << std::endl;
+	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << name << " has entered the Gate Keeper mode" << std::endl;
-	EnergyPoints = 10;
-
-	std::cout << "ScavTrap " << name << " has fully recovered his energy" << std::endl;
-}
-
-// overriding
-void	ScavTrap::attack(const std::string &target)
-{
-	if (!hitpoints || !EnergyPoints)
-		std::cout << "ScavTrap " << name << " can't do anything" << std::endl;
-	else
-	{
-		std::cout << "ScavTrap " << name << " attacks " << target;
-		std::cout << ", Causing " << AttackDamage << " points of damage";
-		std::cout << std::endl;
-		EnergyPoints--; // 에너지 소모
-	}
+	std::cout << "ScavTrap " << name << " sets GateKeeper mode" << std::endl;
 }

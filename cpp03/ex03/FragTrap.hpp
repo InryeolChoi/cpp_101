@@ -1,4 +1,3 @@
-#pragma once
 #include "ClapTrap.hpp"
 
 class FragTrap : virtual public ClapTrap
@@ -11,6 +10,6 @@ class FragTrap : virtual public ClapTrap
 		~FragTrap();
 
 		// member function
-		FragTrap(std::string name);
+		FragTrap(std::string str);
 		void highFivesGuys(void);
 };

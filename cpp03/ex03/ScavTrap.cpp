@@ -7,12 +7,12 @@ ScavTrap::ScavTrap() : ClapTrap("default")
 	hitpoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
-	std::cout << "ScavTrap " << name << " is created." << std::endl;
+	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
 ScavTrap::~ScavTrap()
 {
-	std::cout << "ScavTrap " << name << " is now dead." << std::endl;
+	std::cout << "ScavTrap " << name << " destructor called." << std::endl;
 }
 
 ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
@@ -36,18 +36,16 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 }
 
 // member function
-ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
+ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
 {
 	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
 	hitpoints = 100;
 	EnergyPoints = 50;
 	AttackDamage = 20;
-	std::cout << "ScavTrap " << name << " is created." << std::endl;
+	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
 void	ScavTrap::guardGate()
 {
-	std::cout << "ScavTrap " << name << " has entered the Gate Keeper mode" << std::endl;
-	EnergyPoints = 10;
-	std::cout << "ScavTrap " << name << " has fully recovered his energy" << std::endl;
+	std::cout << "ScavTrap " << name << " sets GateKeeper mode" << std::endl;
 }

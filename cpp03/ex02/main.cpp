@@ -2,19 +2,31 @@
 
 int main()
 {
-	ClapTrap claptrap("Peter");
-	FragTrap fragtrap("John");
-
+	ClapTrap A("a");
+	FragTrap B("b");
 	std::cout << std::endl;
-	claptrap.attack("Peter");
-	fragtrap.takeDamage(0);
-	fragtrap.beRepaired(18);
 
+	// A -> B 공격 (ClapTrap의 공격 : 0)
+	A.attack("a");
+	B.takeDamage(A.getDamage());
 	std::cout << std::endl;
-	fragtrap.attack("John");
-	claptrap.takeDamage(20);
-	claptrap.beRepaired(42);
 
+	// B 회복
+	B.beRepaired(0);
 	std::cout << std::endl;
-	fragtrap.highFivesGuys();
+
+	// B -> A 공격 (FragTrap의 공격 : 30)
+	B.attack("b");
+	A.takeDamage(B.getDamage());
+	std::cout << std::endl;
+
+	// A 회복 (불가능)
+	A.beRepaired(42);
+	std::cout << std::endl;
+
+	// B의 highFivesGuys()
+	B.highFivesGuys();
+	std::cout << std::endl;
+
+	return 0;
 }

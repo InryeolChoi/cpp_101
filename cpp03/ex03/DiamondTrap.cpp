@@ -1,51 +1,50 @@
 #include "DiamondTrap.hpp"
 
-// Orthodox Canonical form
-DiamondTrap::DiamondTrap()
+// orthodox canonical form
+DiamondTrap::DiamondTrap() : ClapTrap("default_clap_trap")
 {
-	ClapTrap::name = "default";
-	std::cout << "DiamondTrap " << name << " is created." << std::endl;
+	this->name = "default";
+	std::cout << "DiamondTrap " << name << " constructor called." << std::endl;
+}
+
+DiamondTrap::DiamondTrap(const DiamondTrap &other) : ClapTrap(), ScavTrap(), FragTrap()
+{
+	*this = other; // =을 이미 오버로딩
+}
+
+DiamondTrap &DiamondTrap::operator=(const DiamondTrap &other)
+{
+	ClapTrap::operator=(other);
+	name = other.name;
+	return (*this);
 }
 
 DiamondTrap::~DiamondTrap()
 {
-	std::cout << "DiamondTrap " << name << "is now died." << std::endl;
-}
-
-DiamondTrap::DiamondTrap(DiamondTrap const &other)
-	: ClapTrap(other), ScavTrap(other), FragTrap(other)
-{
-	std::cout << "DiamondTrap " << name << "is copied from other." << std::endl;
-}
-
-DiamondTrap &DiamondTrap::operator=(DiamondTrap const &other)
-{
-	if (this != &other)
-	{
-		ClapTrap::operator=(other);
-		name = other.name;
-	}
-	return (*this);
+	std::cout << "DiamondTrap " << name << " destructor called." << std::endl;
 }
 
 // member function
-DiamondTrap::DiamondTrap(std::string name): ClapTrap(name + "_clap_name")
+DiamondTrap::DiamondTrap(std::string str) : ClapTrap(str + "_clap_trap")
 {
-	this->name = name;
-	this->hitpoints = FragTrap::hitpoints;
-	this->EnergyPoints = ScavTrap::EnergyPoints;
-	this->AttackDamage = FragTrap::AttackDamage;
-
-	std::cout << "DiamondTrap " << name << " is created." << std::endl;
+	this->name = str;
+	std::cout << "DiamondTrap " << name << " constructor called." << std::endl;
 }
+
+unsigned int DiamondTrap::gethitpoints() { return (hitpoints); }
+unsigned int DiamondTrap::getAttackDamage() { return (AttackDamage); }
+unsigned int DiamondTrap::getEnergyPoints() { return (EnergyPoints); }
+std::string DiamondTrap::getname() { return (name); }
 
 void	DiamondTrap::whoAmI()
 {
-	if (this->hitpoints <= 0)
-		std::cout << "DiamondTrap cannot do anything" << std::endl;
-	else
-	{
-		std::cout << "DiamondTrap's name = " << name << std::endl;
-		std::cout << "DiamondTrap's ClapTrap name = " << ClapTrap::name << std::endl;
-	}
+	std::cout << "Diamond's name = " << name << ", ";
+	std::cout << "ClapTrap's name = " << ClapTrap::name;
+	std::cout << std::endl;
+}
+
+// overriding
+void DiamondTrap::attack(const std::string &target)
+{
+	ScavTrap::attack(target);
 }

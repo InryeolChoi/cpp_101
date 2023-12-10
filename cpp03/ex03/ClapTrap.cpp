@@ -35,7 +35,7 @@ ClapTrap::~ClapTrap()
 }
 
 // member function
-ClapTrap::ClapTrap(std::string name) : name(name), hitpoints(10), EnergyPoints(10), AttackDamage(0) 
+ClapTrap::ClapTrap(std::string str) : name(str), hitpoints(10), EnergyPoints(10), AttackDamage(0) 
 {
 	std::cout << "ClapTrap " << name << " constructor called" << std::endl;
 }
@@ -63,13 +63,18 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (amount > EnergyPoints)
 	{
 		EnergyPoints = 0;
-		std::cout << "ClapTrap " << name << " attacked, ";
+		std::cout << "ClapTrap " << name << " is attacked, ";
 		std::cout << "and is not quite well..";
+	}
+	else if (amount == 0)
+	{
+		std::cout << "ClapTrap " << name << " is not attacked, ";
+		std::cout << "and has " << EnergyPoints << " left.";		
 	}
 	else
 	{
 		EnergyPoints -= amount;
-		std::cout << "ClapTrap " << name << " attacked, ";
+		std::cout << "ClapTrap " << name << " is attacked, ";
 		std::cout << "and has " << EnergyPoints << " left.";
 	}
 	std::cout << std::endl;

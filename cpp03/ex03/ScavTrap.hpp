@@ -11,6 +11,6 @@ class ScavTrap : virtual public ClapTrap
 		~ScavTrap();
 
 		// member function
-		ScavTrap(std::string name);
+		ScavTrap(std::string str);
 		void guardGate();
 };
