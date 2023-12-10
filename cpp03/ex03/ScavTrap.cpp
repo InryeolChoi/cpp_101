@@ -3,10 +3,9 @@
 // Orthodox Canonical form
 ScavTrap::ScavTrap() : ClapTrap("default"), init_hp(100), init_ep(50), init_ad(20)
 {
-	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
-	hitpoints = 100;
-	EnergyPoints = 50;
-	AttackDamage = 20;
+	hitpoints = init_hp;
+	EnergyPoints = init_ep;
+	AttackDamage = init_ad;
 	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
@@ -38,10 +37,9 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 // member function
 ScavTrap::ScavTrap(std::string str) : ClapTrap(str), init_hp(100), init_ep(50), init_ad(20)
 {
-	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
-	hitpoints = 100;
-	EnergyPoints = 50;
-	AttackDamage = 20;
+	hitpoints = init_hp;
+	EnergyPoints = init_ep;
+	AttackDamage = init_ad;
 	std::cout << "ScavTrap " << name << " constructor called." << std::endl;
 }
 
