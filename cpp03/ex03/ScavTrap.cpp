@@ -1,7 +1,7 @@
 #include "ScavTrap.hpp"
 
 // Orthodox Canonical form
-ScavTrap::ScavTrap() : ClapTrap("default")
+ScavTrap::ScavTrap() : ClapTrap("default"), init_hp(100), init_ep(50), init_ad(20)
 {
 	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
 	hitpoints = 100;
@@ -15,7 +15,7 @@ ScavTrap::~ScavTrap()
 	std::cout << "ScavTrap " << name << " destructor called." << std::endl;
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap()
+ScavTrap::ScavTrap(const ScavTrap &other) : ClapTrap(), init_hp(other.init_hp), init_ep(other.init_ep), init_ad(other.init_hp)
 {
 	name = other.name;
 	AttackDamage = other.AttackDamage;
@@ -36,7 +36,7 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 }
 
 // member function
-ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
+ScavTrap::ScavTrap(std::string str) : ClapTrap(str), init_hp(100), init_ep(50), init_ad(20)
 {
 	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
 	hitpoints = 100;
@@ -48,4 +48,19 @@ ScavTrap::ScavTrap(std::string str) : ClapTrap(str)
 void	ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << name << " sets GateKeeper mode" << std::endl;
+}
+
+// overriding
+void	ScavTrap::attack(const std::string &target)
+{
+	if (!hitpoints || !EnergyPoints)
+		std::cout << "ScavTrap " << name << " can't do anything" << std::endl;
+	else
+	{
+		EnergyPoints--; // 에너지 소모
+		std::cout << "ClapTrap " << name << " attacks " << target;
+		std::cout << ", causing " << AttackDamage << " points of damage ";
+		std::cout << "and 1 EnergyPoint decrease.";
+		std::cout << std::endl;
+	}
 }

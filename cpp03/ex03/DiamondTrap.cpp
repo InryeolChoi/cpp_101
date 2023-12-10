@@ -4,6 +4,11 @@
 DiamondTrap::DiamondTrap() : ClapTrap("default_clap_trap")
 {
 	this->name = "default";
+
+	hitpoints = FragTrap::init_hp;
+	EnergyPoints = ScavTrap::init_ep;
+	AttackDamage = FragTrap::init_ad;
+
 	std::cout << "DiamondTrap " << name << " constructor called." << std::endl;
 }
 
@@ -28,13 +33,18 @@ DiamondTrap::~DiamondTrap()
 DiamondTrap::DiamondTrap(std::string str) : ClapTrap(str + "_clap_trap")
 {
 	this->name = str;
+
+	hitpoints = FragTrap::init_hp;
+	EnergyPoints = ScavTrap::init_ep;
+	AttackDamage = FragTrap::init_ad;
+
 	std::cout << "DiamondTrap " << name << " constructor called." << std::endl;
 }
 
 unsigned int DiamondTrap::gethitpoints() { return (hitpoints); }
 unsigned int DiamondTrap::getAttackDamage() { return (AttackDamage); }
 unsigned int DiamondTrap::getEnergyPoints() { return (EnergyPoints); }
-std::string DiamondTrap::getname() { return (name); }
+std::string DiamondTrap::getname() {return (name); }
 
 void	DiamondTrap::whoAmI()
 {

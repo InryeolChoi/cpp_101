@@ -1,7 +1,7 @@
 #include "FragTrap.hpp"
 
 // Orthodox Canonical form
-FragTrap::FragTrap() : ClapTrap("default")
+FragTrap::FragTrap() : ClapTrap("default"), init_hp(100), init_ep(100), init_ad(30)
 {
 	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
 	hitpoints = 100;
@@ -16,7 +16,7 @@ FragTrap::~FragTrap()
 	std::cout << "FragTrap " << name << " destructor called." << std::endl;
 }
 
-FragTrap::FragTrap(const FragTrap &other) : ClapTrap()
+FragTrap::FragTrap(const FragTrap &other) : ClapTrap(), init_hp(other.init_hp), init_ep(other.init_ep), init_ad(other.init_ad)
 {
 	*this = other; // =을 이미 오버로딩
 }
@@ -33,7 +33,7 @@ FragTrap &FragTrap::operator=(const FragTrap &other)
 }
 
 // member function
-FragTrap::FragTrap(std::string str) : ClapTrap(str)
+FragTrap::FragTrap(std::string str) : ClapTrap(str), init_hp(100), init_ep(100), init_ad(30)
 {
 	// 상위 클래스의 멤버는 초기화 생성자에 못 쓴다.
 	hitpoints = 100;

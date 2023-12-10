@@ -3,6 +3,11 @@
 
 class ScavTrap : virtual public ClapTrap
 {
+	protected:
+		const unsigned int init_hp;
+		const unsigned int init_ep;
+		const unsigned int init_ad;
+
 	public:
 		// Orthodox Canonical form
 		ScavTrap();
@@ -13,4 +18,7 @@ class ScavTrap : virtual public ClapTrap
 		// member function
 		ScavTrap(std::string str);
 		void guardGate();
+	
+		// overriding
+		void attack(const std::string &target);
 };

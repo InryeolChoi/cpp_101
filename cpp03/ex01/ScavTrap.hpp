@@ -13,4 +13,7 @@ class ScavTrap : public ClapTrap
 		// member function
 		ScavTrap(std::string name);
 		void guardGate();
+
+		// overriding
+		void attack(const std::string &target);
 };

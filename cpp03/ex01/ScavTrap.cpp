@@ -49,3 +49,18 @@ void	ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << name << " sets GateKeeper mode" << std::endl;
 }
+
+// overriding
+void	ScavTrap::attack(const std::string &target)
+{
+	if (!hitpoints || !EnergyPoints)
+		std::cout << "ScavTrap " << name << " can't do anything" << std::endl;
+	else
+	{
+		EnergyPoints--; // 에너지 소모
+		std::cout << "ClapTrap " << name << " attacks " << target;
+		std::cout << ", causing " << AttackDamage << " points of damage ";
+		std::cout << "and 1 EnergyPoint decrease.";
+		std::cout << std::endl;
+	}
+}

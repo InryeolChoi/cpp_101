@@ -26,7 +26,7 @@ int main(void)
 	B.guardGate();
 	std::cout << std::endl;
 
-	// A -> B 공격
+	// A2 -> B 공격
 	A2.attack("B");
 	B.takeDamage(A2.getDamage());
 	std::cout << std::endl;
