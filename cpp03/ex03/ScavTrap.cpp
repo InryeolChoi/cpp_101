@@ -56,7 +56,7 @@ void	ScavTrap::attack(const std::string &target)
 	else
 	{
 		EnergyPoints--; // 에너지 소모
-		std::cout << "ClapTrap " << name << " attacks " << target;
+		std::cout << "ScavTrap " << name << " attacks " << target;
 		std::cout << ", causing " << AttackDamage << " points of damage ";
 		std::cout << "and 1 EnergyPoint decrease.";
 		std::cout << std::endl;
