@@ -34,8 +34,7 @@ ClapTrap::~ClapTrap()
 	std::cout << "ClapTrap " << name << " destructor called" << std::endl;
 }
 
-
-// ex00 : member function
+// member function
 ClapTrap::ClapTrap(std::string name) : name(name), hitpoints(10), EnergyPoints(10), AttackDamage(0) 
 {
 	std::cout << "ClapTrap " << name << " constructor called" << std::endl;
@@ -47,7 +46,7 @@ void	ClapTrap::attack(const std::string &target)
 		std::cout << "ClapTrap " << name << " can't do anything" << std::endl;
 	else
 	{
-		EnergyPoints--; // 에너지 소모
+		EnergyPoints--; // ep 소모
 		std::cout << "ClapTrap " << name << " attacks " << target;
 		std::cout << ", causing " << AttackDamage << " points of damage ";
 		std::cout << "and 1 EnergyPoint decrease.";
@@ -64,22 +63,23 @@ unsigned int	ClapTrap::getDamage(void)
 
 void	ClapTrap::takeDamage(unsigned int amount)
 {
-	if (amount > EnergyPoints)
+	// hitpoints 감소
+	if (amount == 0)
 	{
-		EnergyPoints = 0;
+		std::cout << "ClapTrap " << name << " is not attacked, ";
+		std::cout << "and has " << hitpoints << " left.";		
+	}
+	else if (amount > hitpoints)
+	{
+		hitpoints = 0;
 		std::cout << "ClapTrap " << name << " is attacked, ";
 		std::cout << "and is not quite well..";
 	}
-	else if (amount == 0)
-	{
-		std::cout << "ClapTrap " << name << " is not attacked, ";
-		std::cout << "and has " << EnergyPoints << " left.";		
-	}
 	else
 	{
-		EnergyPoints -= amount;
+		hitpoints -= amount;
 		std::cout << "ClapTrap " << name << " is attacked, ";
-		std::cout << "and has " << EnergyPoints << " EnergyPoints left.";
+		std::cout << "and has " << hitpoints << " hitpoints left.";
 	}
 	std::cout << std::endl;
 }
