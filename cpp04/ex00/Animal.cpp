@@ -2,7 +2,9 @@
 
 // Orthodox Canonical form
 Animal::Animal() : type("none")
-{}
+{
+	std::cout << "Animal constructor works" << std::endl;
+}
 
 Animal::Animal(const Animal &other)
 {
@@ -17,7 +19,9 @@ Animal &Animal::operator=(const Animal &other)
 }
 
 Animal::~Animal()
-{}
+{
+	std::cout << "Animal destructor works" << std::endl;
+}
 
 // member function
 void Animal::makeSound() const

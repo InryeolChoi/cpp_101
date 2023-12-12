@@ -3,6 +3,7 @@
 // orthodox canonical form
 Dog::Dog()
 {
+	std::cout << "Dog constructor works" << std::endl;
 	setType("Dog");
 }
 
@@ -19,7 +20,9 @@ Dog Dog::operator=(const Dog &other)
 }
 
 Dog::~Dog()
-{}
+{
+	std::cout << "Dog destructor works" << std::endl;
+}
 
 // overriding
 void  Dog::makeSound() const

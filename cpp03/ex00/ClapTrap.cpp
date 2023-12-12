@@ -67,7 +67,7 @@ void	ClapTrap::takeDamage(unsigned int amount)
 	if (amount == 0)
 	{
 		std::cout << "ClapTrap " << name << " is not attacked, ";
-		std::cout << "and has " << hitpoints << " left.";		
+		std::cout << "and has " << hitpoints << " hitpoints left.";		
 	}
 	else if (amount > hitpoints)
 	{

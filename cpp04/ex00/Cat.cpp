@@ -3,6 +3,7 @@
 // orthodox canonical form
 Cat::Cat()
 {
+	std::cout << "Cat constructor works" << std::endl;
 	setType("Cat");
 }
 
@@ -19,7 +20,9 @@ Cat Cat::operator=(const Cat &other)
 }
 
 Cat::~Cat()
-{}
+{
+	std::cout << "Cat destructor works" << std::endl;
+}
 
 // overriding
 void  Cat::makeSound() const
