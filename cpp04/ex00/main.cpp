@@ -4,14 +4,14 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
-// void sss()
+// void check_leaks()
 // {
 // 	system("leaks ex00");
 // }
 
 int main()
 {
-	// atexit(sss);
+	// atexit(check_leaks);
 	const Animal* meta = new Animal();
 	const Animal* j = new Dog();
 	const Animal* i = new Cat();			// virtual 있음 -> cat()의 makeSound

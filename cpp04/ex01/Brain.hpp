@@ -10,4 +10,7 @@ class Brain
 		Brain(const Brain &obj);
 		Brain &operator=(const Brain &obj);
 		~Brain();
+
+		void setidea(int i, std::string str);
+		std::string getidea(int i);
 };

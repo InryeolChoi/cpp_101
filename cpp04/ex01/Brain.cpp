@@ -1,5 +1,6 @@
 #include "Brain.hpp"
 
+/* orthodox canonical form */
 Brain::Brain()
 {
 	for (int i = 0; i < 100; i++)
@@ -21,5 +22,18 @@ Brain &Brain::operator=(const Brain &obj)
 	return (*this);
 }
 
-Brain::~Brain()
-{}
+Brain::~Brain() {}
+
+/* member function */
+void Brain::setidea(int i, std::string str)
+{
+	if (i >= 0 && i < 100)
+		ideas[i] = str;
+	else
+		std::cout << "wrong index" << std::endl;
+}
+
+std::string Brain::getidea(int i)
+{
+	return (ideas[i]);
+}
