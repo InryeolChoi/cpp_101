@@ -1,12 +1,28 @@
+#include "Animal.hpp"
+#include "Dog.hpp"
+#include "Cat.hpp"
 #include "Brain.hpp"
+
+// void sss()
+// {
+// 	system("leaks ex00");
+// }
 
 int main()
 {
-	// const Animal *j = new Dog();
-	// const Animal *i = new Cat();
+	// atexit(sss);
+	Animal *animal[10]; // "객체를 가리키는 포인터" 들의 배열
 
-	// delete j;
-	// delete i;
+	for (size_t i = 0; i < 10; i++)
+	{
+		if (i % 2 == 0)
+			animal[i] = new Dog();
+		else
+			animal[i] = new Cat();
+	}
 
-	// return 0;
+
+	for (size_t i = 0; i < 10; i++)
+		delete animal[i];
+	return 0;
 }

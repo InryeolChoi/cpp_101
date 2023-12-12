@@ -4,6 +4,7 @@
 Dog::Dog()
 {
 	std::cout << "Dog constructor works" << std::endl;
+	brain = new Brain();
 	setType("Dog");
 }
 
@@ -22,6 +23,7 @@ Dog Dog::operator=(const Dog &other)
 Dog::~Dog()
 {
 	std::cout << "Dog destructor works" << std::endl;
+	delete brain;
 }
 
 // overriding
