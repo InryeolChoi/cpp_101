@@ -11,5 +11,5 @@ class Cat : public Animal
 		~Cat();
 
 		// overriding
-		void makeSound();
+		void makeSound() const;
 };

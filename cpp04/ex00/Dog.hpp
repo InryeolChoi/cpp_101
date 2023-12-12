@@ -1,7 +1,7 @@
 #pragma once
 #include "Animal.hpp"
 
-class Dog : protected Animal
+class Dog : public Animal
 {
 	public:
 		// orthodox canonical form
@@ -11,5 +11,5 @@ class Dog : protected Animal
 		~Dog();
 
 		// overriding
-		void makeSound();
+		void makeSound() const;
 };

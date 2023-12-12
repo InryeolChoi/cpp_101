@@ -12,7 +12,7 @@ Animal::Animal(const Animal &other)
 Animal &Animal::operator=(const Animal &other)
 {
 	if (this != &other)
-		this->type = other.type;
+		this->setType(other.type);
 	return (*this);
 }
 
@@ -20,7 +20,7 @@ Animal::~Animal()
 {}
 
 // member function
-void Animal::makeSound()
+void Animal::makeSound() const
 {
 	std::cout << "(none)" << std::endl;
 }
@@ -30,7 +30,7 @@ void Animal::setType(std::string str)
 	type = str;
 }
 
-std::string Animal::getType()
+std::string Animal::getType() const
 {
 	return type;
 }

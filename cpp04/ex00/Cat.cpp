@@ -7,7 +7,9 @@ Cat::Cat()
 }
 
 Cat::Cat(const Cat &other)
-{}
+{
+	*this = other;
+}
 
 Cat Cat::operator=(const Cat &other)
 {
@@ -20,7 +22,7 @@ Cat::~Cat()
 {}
 
 // overriding
-void  Cat::makeSound()
+void  Cat::makeSound() const
 {
 	std::cout << "meow~" << std::endl;
 }
