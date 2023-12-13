@@ -1,13 +1,13 @@
 #include "WrongCat.hpp"
 
 // orthodox canonical form
-WrongCat::WrongCat()
+WrongCat::WrongCat() : WrongAnimal()
 {
 	std::cout << "WrongCat constructor works" << std::endl;
 	setType("WrongCat");
 }
 
-WrongCat::WrongCat(const WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal()
 {
 	*this = other;
 }

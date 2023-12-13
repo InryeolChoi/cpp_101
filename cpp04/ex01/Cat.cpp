@@ -16,7 +16,7 @@ Cat &Cat::operator=(const Cat &other)
 	{
 		this->setType(other.getType());
 		if (this->brain)
-			delete[] brain;
+			delete brain;
 		brain = new Brain(*(other.brain));
 	}
 	return *this;
