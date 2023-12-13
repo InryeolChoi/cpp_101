@@ -11,7 +11,7 @@ class Dog : public Animal
 		// orthodox canonical form
 		Dog();
 		Dog(const Dog &other);
-		Dog operator=(const Dog &other);
+		Dog &operator=(const Dog &other);
 		~Dog();
 
 		// overriding

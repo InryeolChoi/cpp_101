@@ -1,11 +1,10 @@
 #include "Cat.hpp"
 
 // orthodox canonical form
-Cat::Cat()
+Cat::Cat() : brain(new Brain())
 {
-	std::cout << "Cat constructor works" << std::endl;
-	brain = new Brain();
 	setType("Cat");
+	std::cout << "Cat constructor works" << std::endl;
 }
 
 Cat::Cat(const Cat &other)
@@ -13,17 +12,22 @@ Cat::Cat(const Cat &other)
 	*this = other;
 }
 
-Cat Cat::operator=(const Cat &other)
+Cat &Cat::operator=(const Cat &other)
 {
 	if (this != &other)
-		this->setType(other.type);
-	return (*this);
+	{
+		this->setType(other.getType());
+		if (this->brain)
+			delete[] brain;
+		brain = new Brain(*(other.brain));
+	}
+	return *this;
 }
 
 Cat::~Cat()
 {
-	std::cout << "Cat destructor works" << std::endl;
 	delete brain;
+	std::cout << "Cat destructor works" << std::endl;
 }
 
 // overriding
