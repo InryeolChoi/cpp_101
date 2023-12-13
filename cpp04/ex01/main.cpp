@@ -65,6 +65,17 @@ int main()
 
 	delete c1;
 	delete c2;
+	std::cout << std::endl;
+
+	// 4. 깊은 복사 확인 3
+	std::cout << "< 깊은 복사 확인 3 >" << std::endl;
+	WrongAnimal *w1 = new WrongCat();
+	WrongCat *w2 = new WrongCat();
+
+	*w1 = *w2;
+
+	delete w1;
+	delete w2;
 
 	return 0;
 }
