@@ -4,7 +4,7 @@
 Brain::Brain()
 {
 	for (int i = 0; i < 100; i++)
-		ideas[i] = "idea";
+		ideas[i] = "idea"; 
 }
 
 Brain::Brain(const Brain &obj)

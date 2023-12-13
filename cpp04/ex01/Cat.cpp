@@ -1,16 +1,14 @@
 #include "Cat.hpp"
 
 // orthodox canonical form
-Cat::Cat() : brain(new Brain())
+Cat::Cat() : Animal("Cat"), brain(new Brain())
 {
-	setType("Cat");
 	std::cout << "Cat constructor works" << std::endl;
 }
 
-Cat::Cat(const Cat &other)
-{
-	*this = other;
-}
+Cat::Cat(const Cat &other) 
+	: Animal(other.getType()), brain(new Brain(*(other.brain)))
+{}
 
 Cat &Cat::operator=(const Cat &other)
 {
@@ -34,4 +32,9 @@ Cat::~Cat()
 void  Cat::makeSound() const
 {
 	std::cout << "Cat sounds : \"meow~\"" << std::endl;
+}
+
+Brain *Cat::getBrain() const
+{
+	return (brain);
 }

@@ -1,21 +1,20 @@
 #pragma once
 #include <iostream>
 
-class Animal
+class WrongAnimal
 {
 	protected:
 		std::string type;
 
 	public:
 		// Orthodox Canonical form
-		Animal();
-		Animal(const Animal &other);
-		Animal &operator=(const Animal &other);
-		virtual ~Animal();
-
+		WrongAnimal();
+		WrongAnimal(const WrongAnimal &other);
+		WrongAnimal &operator=(const WrongAnimal &other);
+		~WrongAnimal();
+	
 		// member function
-		Animal(std::string str);
-		virtual void makeSound() const;
+		void makeSound() const;
 		void setType(std::string str);
 		std::string getType() const;
 };

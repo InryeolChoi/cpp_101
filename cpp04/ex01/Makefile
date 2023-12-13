@@ -1,6 +1,6 @@
 NAME = ex01
-CXX = c++ -std=c++98 -Wall -Wextra -Werror
-SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp
+CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
+SRCS = main.cpp Animal.cpp Dog.cpp Cat.cpp Brain.cpp WrongAnimal.cpp WrongCat.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

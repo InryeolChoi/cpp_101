@@ -24,6 +24,11 @@ Animal::~Animal()
 }
 
 // member function
+Animal::Animal(std::string str)
+{
+	type = str;
+}
+
 void Animal::makeSound() const
 {
 	std::cout << "Animal sounds : (none)" << std::endl;
