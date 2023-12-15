@@ -66,5 +66,19 @@ int main()
 	delete c1;
 	delete c2;
 
+	// 3. 깊은 복사 확인 2
+	std::cout << "< 깊은 복사 확인 2 >" << std::endl;
+	WrongCat *c1 = new Cat();
+	Cat *c2 = new Cat();
+
+	std::cout << "before : " << std::endl;
+	std::cout << "c1 : " << c1->getBrain()->getidea(1) << ", ";
+	std::cout << "c2 : " << c2->getBrain()->getidea(1) << std::endl;
+
+	*c1 = *c2;
+	std::cout << "after : " << std::endl;
+	std::cout << "c1 : " << c1->getBrain()->getidea(1) << ", ";
+	std::cout << "c2 : " << c2->getBrain()->getidea(1) << std::endl;
+
 	return 0;
 }
