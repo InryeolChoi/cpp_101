@@ -7,7 +7,7 @@ WrongCat::WrongCat()
 	setType("WrongCat");
 }
 
-WrongCat::WrongCat(const WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
 	*this = other;
 }

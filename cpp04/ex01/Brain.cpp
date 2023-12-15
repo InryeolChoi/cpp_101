@@ -35,5 +35,8 @@ void Brain::setidea(int i, std::string str)
 
 std::string Brain::getidea(int i)
 {
-	return (ideas[i]);
+	if (i >= 0 && i < 100)
+		return (ideas[i]);
+	std::cout << "wrong index" << std::endl;
+	return ("");
 }

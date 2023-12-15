@@ -33,12 +33,14 @@ int main()
 	AMateria *item2 = src->createMateria("Cure");
 	if (item2)
 		npc2->equip(item2);
-	
+	std::cout << std::endl;
+
 	// 기술 사용
-	std::cout << "npc1 기술사용" << std::endl;
+	std::cout << "use npc1's materia" << std::endl;
 	npc1->use(0, *npc2);
-	std::cout << "npc2 기술사용" << std::endl;
+	std::cout << "use npc2's materia" << std::endl;
 	npc2->use(0, *npc2);
+	std::cout << std::endl;
 
 	// unequip
 	npc1->unequip(0);
