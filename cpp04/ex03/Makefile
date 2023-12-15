@@ -2,7 +2,7 @@ NAME = ex03
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
 SRCS = AMateria.cpp Cure.cpp Ice.cpp \
 		Character.cpp MateriaSource.cpp \
-		main.cpp
+		main.cpp Floor.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)

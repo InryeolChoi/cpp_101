@@ -7,14 +7,14 @@
 #include "MateriaSource.hpp"
 #include <cstdlib>
 
-void checkleaks()
-{
-	system("leaks ex03");
-}
+// void checkleaks()
+// {
+// 	system("leaks ex03");
+// }
 
 int main()
 {
-	atexit(checkleaks);
+	// atexit(checkleaks);
 
 	// 기술 저장고에 기술 저장
 	IMateriaSource *src = new MateriaSource();

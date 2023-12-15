@@ -24,7 +24,11 @@ Character &Character::operator=(const Character &other)
 		for (int i = 0; i < 4; i++)
 		{
 			if (other.inventory[i])
-				this->inventory[i] = other.inventory[i]->clone();
+			{
+				delete inventory[i];
+				inventory[i] = NULL;
+				inventory[i] = other.inventory[i]->clone();
+			}
 			else
 				this->inventory[i] = NULL;
 		}
@@ -56,6 +60,7 @@ void Character::equip(AMateria *materia)
 	{
 		if (!inventory[i])
 		{
+			std::cout << "fully equipped!" << std::endl;
 			inventory[i] = materia;
 			return ;
 		}
@@ -69,6 +74,8 @@ void Character::unequip(int idx)
 	{
 		if (inventory[idx])
 		{
+			// NULL로 덮어씌우기 전 주소값 이전
+			floor.additem(idx, inventory[idx]);
 			inventory[idx] = NULL;
 			std::cout << "unequip finished" << std::endl;
 		}

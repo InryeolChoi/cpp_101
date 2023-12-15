@@ -1,5 +1,6 @@
 #pragma once
 #include "ICharacter.hpp"
+#include "Floor.hpp"
 
 class AMateria; // 전방 선언
 
@@ -7,6 +8,7 @@ class Character : public ICharacter
 {
 	private:
 		std::string name;
+		Floor floor;
 		AMateria *inventory[4];
 
 	public:
