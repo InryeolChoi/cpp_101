@@ -1,7 +1,8 @@
 NAME = ex03
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
-SRCS = AMeteria.hpp Cure.hpp Ice.hpp \
-		ICharacter.hpp IMateriaSource.hpp		
+SRCS = AMateria.cpp Cure.cpp Ice.cpp \
+		Character.cpp MateriaSource.cpp \
+		main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
