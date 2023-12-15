@@ -2,9 +2,7 @@
 
 // orthodox canonical form
 Character::Character() : name("default")
-{
-	std::cout << "Character constructor called" << std::endl;
-}
+{}
 
 Character::Character(const Character &other) 
 {
@@ -45,9 +43,7 @@ Character::~Character()
 
 // member function
 Character::Character(std::string str) : name(str)
-{
-	std::cout << "Character constructor called" << std::endl;
-}
+{}
 
 std::string const &Character::getName() const
 {
@@ -70,7 +66,15 @@ void Character::equip(AMateria *materia)
 void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < 4)
-		inventory[idx] = NULL;
+	{
+		if (inventory[idx])
+		{
+			inventory[idx] = NULL;
+			std::cout << "unequip finished" << std::endl;
+		}
+		else
+			std::cout << "error : already NULL" << std::endl;
+	}
 	else
 		std::cout << "error : invalid index" << std::endl;
 }
@@ -78,7 +82,12 @@ void Character::unequip(int idx)
 void Character::use(int idx, ICharacter &target)
 {
 	if (idx >= 0 && idx < 4)
-		inventory[idx]->use(target);
+	{
+		if (inventory[idx])
+			inventory[idx]->use(target);
+		else
+			std::cout << "error : inventory is empty" << std::endl;
+	}
 	else
 		std::cout << "error : invalid index" << std::endl;
 }

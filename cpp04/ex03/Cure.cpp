@@ -2,9 +2,7 @@
 
 // orthodox canonical form
 Cure::Cure() : AMateria("Cure")
-{
-	std::cout << "Cure constructor called" << std::endl;
-}
+{}
 
 Cure::Cure(const Cure &other) : AMateria(other)
 {}
@@ -16,12 +14,19 @@ Cure &Cure::operator=(const Cure &other)
 }
 
 Cure::~Cure()
-{
-	std::cout << "Cure destructor called" << std::endl;
-}
+{}
 
 // member function
 AMateria *Cure::clone(void) const
 {
 	return (new Cure());
+}
+
+void Cure::use(ICharacter &target)
+{
+	if (type == "Cure")
+	{
+		std::cout << "* heals " << target.getName();
+		std::cout << "'s wounds *" << std::endl;
+	}
 }

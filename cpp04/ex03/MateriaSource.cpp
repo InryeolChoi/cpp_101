@@ -38,7 +38,7 @@ MateriaSource::~MateriaSource()
 // others & member function
 void MateriaSource::learnMateria(AMateria *materia)
 {
-	if (materia->getType() != "ice" || materia->getType() != "cure")
+	if (materia->getType() != "Ice" && materia->getType() != "Cure")
 	{
 		std::cout << "type of materia is not valid." << std::endl;
 		return ;

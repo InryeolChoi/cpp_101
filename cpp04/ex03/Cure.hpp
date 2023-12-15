@@ -11,4 +11,5 @@ class Cure : public AMateria
 
 		// member function
 		AMateria *clone(void) const;
+		void use(ICharacter &target);
 };
