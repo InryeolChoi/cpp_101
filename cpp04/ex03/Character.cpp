@@ -2,7 +2,10 @@
 
 // orthodox canonical form
 Character::Character() : name("default")
-{}
+{
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+}
 
 Character::Character(const Character &other) 
 {
@@ -47,7 +50,10 @@ Character::~Character()
 
 // member function
 Character::Character(std::string str) : name(str)
-{}
+{
+	for (int i = 0; i < 4; i++)
+		inventory[i] = NULL;
+}
 
 std::string const &Character::getName() const
 {

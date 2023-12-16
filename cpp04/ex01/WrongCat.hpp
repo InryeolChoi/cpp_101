@@ -1,18 +1,18 @@
 #pragma once
 #include "Brain.hpp"
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
 	private:
 		Brain *brain;
 
 	public:
 		// orthodox canonical form
-		Cat();
-		Cat(const Cat &other);
-		Cat &operator=(const Cat &other);
-		~Cat();
+		WrongCat();
+		WrongCat(const WrongCat &other);
+		WrongCat operator=(const WrongCat &other);
+		~WrongCat();
 
 		// overriding
 		void makeSound() const;
