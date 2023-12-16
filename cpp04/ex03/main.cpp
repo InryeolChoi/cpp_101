@@ -42,10 +42,9 @@ int main()
 	npc2->use(0, *npc2);
 	std::cout << std::endl;
 
-	// unequip
+	// unequip (once unequip, you can't equip anymore)
 	npc1->unequip(0);
 	npc2->unequip(0);
-	npc1->equip(item1);
 
 	// 캐릭터 해제
 	delete npc1;

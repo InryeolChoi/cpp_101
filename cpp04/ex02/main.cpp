@@ -11,7 +11,7 @@
 
 // void check_leaks()
 // {
-// 	system("leaks ex01");
+// 	system("leaks ex02");
 // }
 
 int main()

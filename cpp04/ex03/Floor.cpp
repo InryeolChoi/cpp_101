@@ -33,7 +33,7 @@ Floor::~Floor()
 
 void Floor::additem(int idx, AMateria *item)
 {
-	if (idx >= 0 && idx < 4 && slot[idx] != NULL)
+	if (idx >= 0 && idx < 4 && slot[idx] == NULL)
 	{
 		for (int i = 0; i < 4; i++)
 			slot[idx] = item;

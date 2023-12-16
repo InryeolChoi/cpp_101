@@ -25,6 +25,7 @@ WrongCat WrongCat::operator=(const WrongCat &other)
 
 WrongCat::~WrongCat()
 {
+	delete brain;
 	std::cout << "WrongCat destructor works" << std::endl;
 }
 
