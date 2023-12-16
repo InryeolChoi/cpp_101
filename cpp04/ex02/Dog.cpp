@@ -1,13 +1,13 @@
 #include "Dog.hpp"
 
 // orthodox canonical form
-Dog::Dog() : Animal("Dog"), brain(new Brain())
+Dog::Dog() : AAnimal("Dog"), brain(new Brain())
 {
 	std::cout << "Dog constructor works" << std::endl;
 }
 
 Dog::Dog(const Dog &other) 
-	: Animal(other.getType()), brain(new Brain(*(other.brain)))
+	: AAnimal(other.getType()), brain(new Brain(*(other.brain)))
 {}
 
 Dog &Dog::operator=(const Dog &other)

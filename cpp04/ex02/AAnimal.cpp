@@ -1,40 +1,40 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 
 // Orthodox Canonical form
-Animal::Animal() : type("none")
+AAnimal::AAnimal() : type("none")
 {
 	std::cout << "Animal constructor works" << std::endl;
 }
 
-Animal::Animal(const Animal &other)
+AAnimal::AAnimal(const AAnimal &other)
 {
 	*this = other;
 }
 
-Animal &Animal::operator=(const Animal &other)
+AAnimal &AAnimal::operator=(const AAnimal &other)
 {
 	if (this != &other)
 		this->setType(other.type);
 	return (*this);
 }
 
-Animal::~Animal()
+AAnimal::~AAnimal()
 {
 	std::cout << "Animal destructor works" << std::endl;
 }
 
 // member function
-Animal::Animal(std::string str)
+AAnimal::AAnimal(std::string str)
 {
 	type = str;
 }
 
-void Animal::setType(std::string str)
+void AAnimal::setType(std::string str)
 {
 	type = str;
 }
 
-std::string Animal::getType() const
+std::string AAnimal::getType() const
 {
 	return type;
 }

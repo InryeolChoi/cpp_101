@@ -1,10 +1,13 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "Brain.hpp"
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 #include <cstdlib>
+
+/* 조건 : Animal 클래스를 추상클래스로 바꿀 것. */
+/* 따라서 이름 역시 Animal에서 AAnimal로 바뀜 (맨 앞의 A : abstract) */
 
 // void check_leaks()
 // {
@@ -15,56 +18,21 @@ int main()
 {
 	// atexit(check_leaks);
 
-	// 1. Animal 타입의 배열 만들기
-	std::cout << "< Animal 타입 배열 생성/소멸 >" << std::endl;
-	Animal *animal[10]; // "객체를 가리키는 포인터" 들의 배열
-
-	for (size_t i = 0; i < 10; i++)
-	{
-		if (i % 2 == 0)
-			animal[i] = new Dog();
-		else
-			animal[i] = new Cat();
-	}
-	std::cout << std::endl;
-
-	for (size_t i = 0; i < 10; i++)
-		delete animal[i];
-	std::cout << std::endl;
-
-	// 2. 깊은 복사 확인 1
-	std::cout << "< 깊은 복사 확인 1 >" << std::endl;
+	/* Dog와 Cat 클래스는 인스턴스화가 된다. */
 	Dog *d1 = new Dog();
-	Dog *d2 = new Dog(*d1);
-
-	std::cout << "before : " << std::endl;
-	std::cout << "d1 : " << d1->getBrain()->getidea(1) << ", ";
-	std::cout << "d2 : " << d2->getBrain()->getidea(1) << std::endl;
-
-	std::cout << "after : " << std::endl;
-	std::cout << "d1 : " << d1->getBrain()->getidea(1) << ", ";
-	std::cout << "d2 : " << d2->getBrain()->getidea(1) << std::endl;
-
-	delete d1;
-	delete d2;
-	std::cout << std::endl;
-
-	// 3. 깊은 복사 확인 2
-	std::cout << "< 깊은 복사 확인 2 >" << std::endl;
 	Cat *c1 = new Cat();
-	Cat *c2 = new Cat();
 
-	std::cout << "before : " << std::endl;
-	std::cout << "c1 : " << c1->getBrain()->getidea(1) << ", ";
-	std::cout << "c2 : " << c2->getBrain()->getidea(1) << std::endl;
-
-	*c1 = *c2;
-	std::cout << "after : " << std::endl;
-	std::cout << "c1 : " << c1->getBrain()->getidea(1) << ", ";
-	std::cout << "c2 : " << c2->getBrain()->getidea(1) << std::endl;
-
+	d1->makeSound();
+	c1->makeSound();
+	delete d1;
 	delete c1;
-	delete c2;
+
+	/* AAnimal 클래스는 인스턴스화가 안된다. (추상클래스이기 때문) */
+	// AAnimal *animal = new AAnimal();
+
+	/* WrongAnimal 클래스는 인스턴스화가 된다. (추상클래스는 아니기 때문) */
+	WrongAnimal *wa = new WrongAnimal();
+	delete wa;
 
 	return 0;
 }
