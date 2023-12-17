@@ -66,5 +66,4 @@ void Bureaucrat::downGrade(int num)
 // overloading operator <<
 std::ostream& operator<<(std::string name, int grade)
 {
-
 }
