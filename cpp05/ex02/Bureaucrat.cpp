@@ -78,7 +78,7 @@ void Bureaucrat::downGrade(int number)
 }
 
 // new member function in ex01 
-void Bureaucrat::signForm(Form &form)
+void Bureaucrat::signForm(AForm &form)
 {
 	try
 	{
@@ -94,9 +94,18 @@ void Bureaucrat::signForm(Form &form)
 }
 
 // new member function in ex02
-void Bureaucrat::executeForm(AForm const &form)
+void Bureaucrat::executeForm(const AForm &form)
 {
-	std::cout << name << " executed ";
+	try
+	{
+		form.execute(*this);
+		std::cout << name << " executes " << form.getName() << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << name << " cannot execute " << form.getName();
+		std::cout << " because " << e.what() << std::endl;
+	}
 }
 
 // Exceptions

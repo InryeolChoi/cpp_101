@@ -1,9 +1,8 @@
 #pragma once
 #include <iostream>
-#include "Form.hpp"
 #include "AForm.hpp"
 
-class Form; // 전방선언
+class AForm; // 전방선언
 
 class Bureaucrat
 {
@@ -33,10 +32,10 @@ class Bureaucrat
 		void downGrade(int number);
 
 		// new member function in ex01 
-		void signForm(Form &form);
+		void signForm(AForm &form);
 
 		// new member function in ex02
-		void executeForm(AForm const &form);
+		void executeForm(const AForm &form);
 
 		// Exception class
 		class GradeTooHighException : public std::exception

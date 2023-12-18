@@ -32,7 +32,7 @@ class AForm // 추상클래스로 만들어줘야 함.
 
 		// new member function in ex02
 		// 순수 가상함수로 제작
-		virtual void execute(Bureaucrat const & executor) = 0;
+		virtual void execute(const Bureaucrat &executor) const = 0;
 
 		// exception class
 		class GradeTooHighException : public std::exception
@@ -52,4 +52,4 @@ class AForm // 추상클래스로 만들어줘야 함.
 		};
 };
 
-std::ostream& operator<<(std::ostream &output, Form &form);
+std::ostream& operator<<(std::ostream &output, AForm &form);
