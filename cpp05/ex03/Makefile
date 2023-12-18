@@ -1,6 +1,8 @@
 NAME = ex03
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
-SRCS = main.cpp Bureaucrat.cpp
+SRCS = main.cpp Bureaucrat.cpp AForm.cpp \
+		PresidentialPardonForm.cpp RobotomyRequestForm.cpp \
+		ShrubberyCreationForm.cpp Intern.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
