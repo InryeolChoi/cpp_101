@@ -45,11 +45,12 @@ int main(void)
 	{
 		std::cerr << e.what() << std::endl;
 	}
+	std::cout << std::endl;
 
 	// 국책사업4 : 수능에 컴퓨터과학 과목 추가
 	try
 	{
-		Form add_CS_to_CSAT("add_CS_to_CSAT", 0, -1);
+		Form add_CS_to_CSAT("add_CS_to_CSAT", 0, -1); // 등급이 너무 높음.
 		std::cout << add_CS_to_CSAT;
 		inchoi.signForm(add_CS_to_CSAT);
 	}

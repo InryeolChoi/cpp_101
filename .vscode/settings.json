@@ -1,6 +1,5 @@
 {
 	"files.associations": {
-		"iosfwd": "cpp",
 		"__bit_reference": "cpp",
 		"__config": "cpp",
 		"__debug": "cpp",
@@ -40,6 +39,7 @@
 		"initializer_list": "cpp",
 		"iomanip": "cpp",
 		"ios": "cpp",
+		"iosfwd": "cpp",
 		"iostream": "cpp",
 		"istream": "cpp",
 		"iterator": "cpp",
@@ -63,7 +63,6 @@
 		"typeinfo": "cpp",
 		"unordered_map": "cpp",
 		"utility": "cpp",
-		"vector": "cpp",
-		"filesystem": "cpp"
+		"vector": "cpp"
 	}
 }
