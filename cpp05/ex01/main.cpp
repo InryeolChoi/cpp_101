@@ -7,7 +7,11 @@ int main(void)
 	Bureaucrat inchoi("inchoi", 10);
 	std::cout << inchoi;
 	std::cout << std::endl;
-	
+
+	Bureaucrat Kim("Kim", 2);
+	std::cout << Kim;
+	std::cout << std::endl;
+
 	// 국책사업1 : 42서울 지원
 	try
 	{
@@ -26,7 +30,11 @@ int main(void)
 	{
 		Form rapidBundang("rapidBundang", 3, 12);
 		std::cout << rapidBundang;
-		inchoi.signForm(rapidBundang);
+		inchoi.signForm(rapidBundang);	// 싸인 불가능
+		Kim.signForm(rapidBundang);		// 싸인 가능
+
+		// 재사인 (불가능)
+		Kim.signForm(rapidBundang);
 	}
 	catch (std::exception &e)
 	{
@@ -47,7 +55,7 @@ int main(void)
 	}
 	std::cout << std::endl;
 
-	// 국책사업4 : 수능에 컴퓨터과학 과목 추가
+	// 국책사업4 : 수능에 컴퓨터과학 과목 추가 (폼 자체가 불가능)
 	try
 	{
 		Form add_CS_to_CSAT("add_CS_to_CSAT", 0, -1); // 등급이 너무 높음.

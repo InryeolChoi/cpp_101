@@ -6,8 +6,8 @@ int main(void)
 	try
 	{
 		Bureaucrat James("James", 100);
-		James.upGrade();
-		James.downGrade();
+		James.upGrade(); 	// 100에서 99
+		James.downGrade();	// 99에서 100
 	}
 	catch (std::exception &e) {
 		std::cout << "error : " << e.what() << std::endl;
@@ -47,5 +47,4 @@ int main(void)
 	catch (std::exception &e) {
 		std::cout << "error : " << e.what() << std::endl;
 	}
-	std::cout << std::endl;
 }

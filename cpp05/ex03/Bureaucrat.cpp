@@ -101,7 +101,7 @@ void Bureaucrat::executeForm(const AForm &form)
 		if (form.getIsSigned() == false)
 			throw NotSignedException();
 		else if (form.getExeGrade() < grade)
-			throw UnavailableGradeException();
+			throw GradeTooLowException();
 		else
 		{
 			form.execute(*this);
@@ -129,11 +129,6 @@ const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 const char *Bureaucrat::NotSignedException::what(void) const throw()
 {
 	return ("the form is not signed.");
-}
-
-const char *Bureaucrat::UnavailableGradeException::what(void) const throw()
-{
-	return ("his/her grade is too low");
 }
 
 // overloading operator <<
