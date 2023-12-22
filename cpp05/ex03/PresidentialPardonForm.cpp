@@ -2,12 +2,12 @@
 
 // private, constructor
 PresidentialPardonForm::PresidentialPardonForm() 
-	: AForm("ShrubberyCreation", 25, 5), target("_target")
+	: AForm("PresidentialPardonForm", 25, 5), target("_target")
 {}
 
 // public, orthodox canonical form
 PresidentialPardonForm::PresidentialPardonForm(std::string str)
-	: AForm("ShrubberyCreation", 25, 5), target(str)
+	: AForm("PresidentialPardonForm", 25, 5), target(str)
 {}
 
 PresidentialPardonForm::PresidentialPardonForm(PresidentialPardonForm const &other)

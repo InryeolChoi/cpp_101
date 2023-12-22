@@ -19,9 +19,9 @@ Intern::~Intern()
 {}
 
 // member function
-static AForm *form_Presi(const std::string target)
+static AForm *form_Shrubery(const std::string target)
 {
-	return (new PresidentialPardonForm(target));
+	return (new ShrubberyCreationForm(target));
 }
 
 static AForm *form_Robot(const std::string target)
@@ -29,9 +29,9 @@ static AForm *form_Robot(const std::string target)
 	return (new RobotomyRequestForm(target));
 }
 
-static AForm *form_Shrubery(const std::string target)
+static AForm *form_Presi(const std::string target)
 {
-	return (new ShrubberyCreationForm(target));
+	return (new PresidentialPardonForm(target));
 }
 
 AForm *Intern::makeForm(std::string s1, std::string s2)

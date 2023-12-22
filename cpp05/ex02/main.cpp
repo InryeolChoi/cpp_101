@@ -10,6 +10,8 @@ int main(void)
 	Bureaucrat Son("Son", 50);
 	Bureaucrat Lee("Lee", 60);
 	Bureaucrat Kim("Kim", 30);
+	// Bureaucrat Lee("Lee", 1);
+	// Bureaucrat Kim("Kim", 1);
 	std::cout << std::endl;
 
 	// Shrbe(145, 137)
@@ -42,7 +44,7 @@ int main(void)
 	}
 	std::cout << std::endl;
 
-	// form 생성 3 : Presidential
+	// form 생성 3 : Presidential, sign 실패, exec 실패
 	try
 	{
 		PresidentialPardonForm form3("home");
