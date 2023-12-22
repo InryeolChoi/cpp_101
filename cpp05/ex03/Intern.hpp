@@ -6,12 +6,10 @@
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 
+class Form;
+
 class Intern
 {
-	private:
-		std::string names[i];
-		std::string forms[i];
-
 	public:
 		// orthodox canonical form
 		Intern();
