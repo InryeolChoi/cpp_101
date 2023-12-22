@@ -23,7 +23,7 @@ int main(void)
 	// shrubbery creation
 	try
 	{
-		form1 = choi.makeForm("shrubbery creation", "Kim");
+		form1 = choi.makeForm("shrubbery creation", "Home");
 		lee.signForm(*form1);
 		lee.executeForm(*form1);
 	}

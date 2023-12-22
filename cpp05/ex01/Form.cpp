@@ -36,7 +36,7 @@ void Form::checkGrade(int grade)
 {
 	if (grade > 150)
 		throw GradeTooLowException();
-	else if (grade < 0)
+	else if (grade < 1)
 		throw GradeTooHighException();
 }
 
