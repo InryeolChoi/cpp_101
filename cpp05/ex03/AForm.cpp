@@ -55,7 +55,7 @@ int AForm::getExeGrade() const
 	return exeGrade;
 }
 
-bool AForm::getIsSigned()
+bool AForm::getIsSigned() const
 {
 	return isSigned;
 }

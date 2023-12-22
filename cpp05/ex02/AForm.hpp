@@ -25,7 +25,7 @@ class AForm // 추상클래스로 만들어줘야 함.
 
 		// member function
 		std::string getName() const;
-		bool getIsSigned();
+		bool getIsSigned() const;
 		int getSignGrade() const;
 		int getExeGrade() const;
 		void beSigned(Bureaucrat &member);

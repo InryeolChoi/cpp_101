@@ -98,8 +98,15 @@ void Bureaucrat::executeForm(const AForm &form)
 {
 	try
 	{
-		form.execute(*this);
-		std::cout << name << " executes " << form.getName() << std::endl;
+		if (form.getIsSigned() == false)
+			throw NotSignedException();
+		else if (form.getExeGrade() < grade)
+			throw UnavailableGradeException();
+		else
+		{
+			form.execute(*this);
+			std::cout << name << " executes " << form.getName() << std::endl;
+		}
 	}
 	catch (std::exception &e)
 	{
@@ -117,6 +124,16 @@ const char *Bureaucrat::GradeTooLowException::what(void) const throw()
 const char *Bureaucrat::GradeTooHighException::what(void) const throw()
 {
 	return ("Grade too high");
+}
+
+const char *Bureaucrat::NotSignedException::what(void) const throw()
+{
+	return ("the form is not signed.");
+}
+
+const char *Bureaucrat::UnavailableGradeException::what(void) const throw()
+{
+	return ("his/her grade is too low");
 }
 
 // overloading operator <<
