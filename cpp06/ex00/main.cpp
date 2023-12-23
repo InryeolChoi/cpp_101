@@ -5,14 +5,12 @@ int main(int ac, char **av)
 	try
 	{
 		if (ac != 2)
-			throw NotEnoughArgs();
+			throw ScalarConverter::NotEnoughArgs();
 		else
-		{
-			av[0];
-		}
+			ScalarConverter sc(av[1]);
 	}
-	catch (std::exception &e)
-	{
-
+	catch (std::exception &e) {
+		std::cout << e.what() << std::endl;
 	}
+	return 0;
 }
