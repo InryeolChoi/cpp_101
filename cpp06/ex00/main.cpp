@@ -2,15 +2,26 @@
 
 int main(int ac, char **av)
 {
-	try
+	try 
 	{
 		if (ac != 2)
 			throw ScalarConverter::NotEnoughArgs();
 		else
-			ScalarConverter sc(av[1]);
+		{
+			try 
+			{
+				ScalarConverter sc(av[1]);
+			}
+			catch (std::exception &e)
+			{
+				std::cout << e.what() << std::endl;
+			}
+		}
 	}
-	catch (std::exception &e) {
+	catch (std::exception &e) 
+	{
 		std::cout << e.what() << std::endl;
 	}
+
 	return 0;
 }

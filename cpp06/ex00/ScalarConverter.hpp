@@ -13,6 +13,28 @@ class ScalarConverter
 		float 		_float;
 		int 		_int;
 
+		// enum
+		enum type {
+			NAN_INF, ERROR, CHAR, INT, FLOAT, DOUBLE
+		};
+
+		// member function
+		int checkType();
+		void convertInput();
+		void convert_char();
+		void convert_int();
+		void convert_double();
+		void convert_float();
+		void printInput();
+
+		// member function, get()
+		std::string getInput();
+		int 		getType();
+		char		getChar();
+		double		getDouble();
+		float		getFloat();
+		int			getInt();
+
 	public:
 		//orthodox canonical form
 		ScalarConverter();
@@ -23,14 +45,13 @@ class ScalarConverter
 		// constructor overload
 		ScalarConverter(std::string str);
 
-
-
-		// member function
-		void print();
-
-
 		// exception
 		class NotEnoughArgs : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
+		class TypeError : public std::exception
 		{
 			public:
 				virtual const char *what() const throw();

@@ -1,4 +1,4 @@
-NAME = ex00
+NAME = convert
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
 SRCS = main.cpp ScalarConverter.cpp
 OBJS = $(SRCS:.cpp=.o)
