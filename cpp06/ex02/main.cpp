@@ -28,64 +28,51 @@ static Base *generate(void)
 static void identify(Base *test)
 {
 	if (dynamic_cast<A *>(test))
-		std::cout << "type : A" << std::endl;
+		std::cout << "pointer type : A" << std::endl;
 	else if (dynamic_cast<B *>(test))
-		std::cout << "type : B" << std::endl;
+		std::cout << "pointer type : B" << std::endl;
 	else if (dynamic_cast<C *>(test))
-		std::cout << "type : C" << std::endl;
+		std::cout << "pointer type : C" << std::endl;
 	else
-		std::cout << "unknown type" << std::endl;
+		std::cout << "unknown pointer type" << std::endl;
 }
-
-static int i = 0;
-static std::string classes[] = {"A", "B", "C"};
 
 static void identify(Base &test)
 {
-	while (i < 3)
+	try
 	{
-		void *foo = NULL;
-		Base &unused = (Base &)foo;
-		try
-		{
-			if (i == 0)
-				unused = dynamic_cast<A &>(test);
-			else if (i == 1)
-				unused = dynamic_cast<B &>(test);
-			else if (i == 2)
-				unused = dynamic_cast<C &>(test);
-			else
-				std::cout << "unknow type" << std::endl;
-			(void)unused;
-		}
-		catch (std::exception &e)
-		{
-			i++;
-			identify(test);
-			return;
-		}
-		std::cout << classes[i] << " is the identified type" << std::endl;
-		i = 0;
-		break;
+		A &a = dynamic_cast<A&>(test);
+		std::cout << "reference type is A" << std::endl;
+		static_cast<void>(a);
 	}
+	catch (std::exception &e) {}
+	try
+	{
+		B &b = dynamic_cast<B&>(test);
+		std::cout << "reference type is B" << std::endl;
+		static_cast<void>(b);
+	}
+	catch (std::exception &e) {}
+	try
+	{
+		C &c = dynamic_cast<C&>(test);
+		std::cout << "reference type is C" << std::endl;
+		static_cast<void>(c);
+	}
+	catch (std::exception &e) {}
 }
 
 int main(void)
 {
 	srand(time(NULL));
-	for (int j = 0; j < 5; j++)
+	Base *Test = generate();
+	if (Test == NULL)
+		return (1);
+	else
 	{
-		Base *Test = generate();
-		if (Test == NULL)
-			return (1);
-		else
-		{
-			identify(Test);
-			identify(*Test);
-			delete (Test);
-
-			std::cout << std::endl;
-		}
+		identify(Test);
+		identify(*Test);
+		delete (Test);
 	}
 	return (0);
 }
