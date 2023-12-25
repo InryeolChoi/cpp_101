@@ -1,11 +1,12 @@
 #pragma once
 #include <iostream>
+#include <stdint.h>
 
-typedef struct t_Data
+typedef struct Data
 {
 	std::string name;
 	size_t		age;
-	Data		*next
+	Data		*next;
 }	Data;
 
 class Serializer
@@ -18,7 +19,7 @@ class Serializer
 		~Serializer();
 
 		// member function
-		uintptr_t serializer(Data* ptr);
+		uintptr_t serialize(Data* ptr);
 		Data* deserialize(uintptr_t raw);
 };
 

@@ -1,6 +1,6 @@
 NAME = ex02
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
-SRCS = main.cpp
+SRCS = main.cpp Base.cpp A.cpp B.cpp C.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
