@@ -1,17 +1,27 @@
 #pragma once
 #include <iostream>
 
-class whatever
+// template function
+template <typename T>
+void swap(T &a, T &b)
 {
-	public:
-		// orthodox canonical form
-		whatever();
-		whatever(const whatever &other);	
-		whatever &operator=(const whatever &other);
-		~whatever();
+	T temp = a;
+	a = b;
+	b = temp;
+}
 
-		// member function
-		swap();
-		min();
-		max();
-};
+template <typename X>
+X min(X &a, X &b)
+{
+	if (a < b)
+		return (a);
+	return (b);
+}
+
+template <typename U>
+U max(U &a, U &b)
+{
+	if (a < b)
+		return (b);
+	return (a);
+}

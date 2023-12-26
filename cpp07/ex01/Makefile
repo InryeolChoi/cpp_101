@@ -1,6 +1,6 @@
 NAME = ex01
 CXX = c++ -std=c++98 -Wall -Wextra -Werror -g
-SRCS = main.cpp iter.cpp
+SRCS = main.cpp
 OBJS = $(SRCS:.cpp=.o)
 
 all : $(NAME)
