@@ -41,9 +41,9 @@ static void identify(Base &test)
 {
 	try
 	{
-		A &a = dynamic_cast<A&>(test);
-		std::cout << "reference type is A" << std::endl;
-		static_cast<void>(a);
+		A &a = dynamic_cast<A&>(test);						// A로 타입 변경
+		std::cout << "reference type is A" << std::endl;	// 문자열 출력
+		static_cast<void>(a);								// 미사용 감지 방지
 	}
 	catch (std::exception &e) {}
 	try

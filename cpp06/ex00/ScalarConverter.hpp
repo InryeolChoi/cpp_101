@@ -28,12 +28,12 @@ class ScalarConverter
 		void printInput();
 
 		// member function, get()
-		std::string getInput();
-		int 		getType();
-		char		getChar();
-		double		getDouble();
-		float		getFloat();
-		int			getInt();
+		std::string getInput() const;
+		int 		getType() const;
+		char		getChar() const;
+		double		getDouble() const;
+		float		getFloat() const;
+		int			getInt() const;
 
 	public:
 		//orthodox canonical form

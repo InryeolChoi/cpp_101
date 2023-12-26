@@ -4,14 +4,28 @@
 ScalarConverter::ScalarConverter()
 {}
 
-ScalarConverter::ScalarConverter(ScalarConverter const &other): input()
+ScalarConverter::ScalarConverter(ScalarConverter const &other): input(other.getInput())
 {
-	if (this != &other) {}
+	if (this != &other)
+	{
+		type = other.getType();
+		_char = other.getChar();
+		_double = other.getDouble();
+		_float = other.getFloat();
+		_int = other.getInt();
+	}
 }
 
 ScalarConverter &ScalarConverter::operator=(ScalarConverter const &other)
 {
-	if (this != &other) {}
+	if (this != &other) 
+	{
+		type = other.getType();
+		_char = other.getChar();
+		_double = other.getDouble();
+		_float = other.getFloat();
+		_int = other.getInt();
+	}
 	return (*this);
 }
 
@@ -117,7 +131,7 @@ void ScalarConverter::convert_int()
 {
 	_int = static_cast<int>(getDouble());
 	_char = static_cast<unsigned char>(getInt());
-	_float = static_cast<float>(getFloat());
+	_float = static_cast<float>(getDouble());
 }
 
 void ScalarConverter::convert_double()
@@ -193,29 +207,28 @@ void ScalarConverter::printInput()
 	}
 }
 
-
 // get() 계열 함수
-int ScalarConverter::getType() {
+int ScalarConverter::getType() const {
 	return (type);
 }
 
-std::string ScalarConverter::getInput() {
+std::string ScalarConverter::getInput() const {
 	return (input);
 }
 
-char ScalarConverter::getChar() {
+char ScalarConverter::getChar() const {
 	return (_char);
 }
 
-double ScalarConverter::getDouble() {
+double ScalarConverter::getDouble() const {
 	return (_double);
 }
 
-float ScalarConverter::getFloat() {
+float ScalarConverter::getFloat() const {
 	return (_float);
 }
 
-int	ScalarConverter::getInt() {
+int	ScalarConverter::getInt() const {
 	return (_int);
 }
 
