@@ -183,7 +183,7 @@ void ScalarConverter::printInput()
 		else if (getInput()[0] == '+')
 			std::cout << "float : +inff" << std::endl;
 		else
-			std::cout << "float : inff" << std::endl;
+			std::cout << "float : -inff" << std::endl;
 	}
 
 	// display double
