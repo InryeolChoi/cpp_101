@@ -91,6 +91,9 @@ void ScalarConverter::convertInput()
 	int types[] = {CHAR, INT, FLOAT, DOUBLE};
 	int i;
 
+	if (getType() == NAN_INF)
+		return ;
+
 	for (i = 0; i < 4; i++) {
 		if (getType() == types[i])
 		{
@@ -142,6 +145,8 @@ void ScalarConverter::printInput()
 		else
 			std::cout << "char : Non displayable" << std::endl;
 	}
+	else
+		std::cout << "char : impossible" << std::endl;
 
 	// display int
 	if (getType() != NAN_INF && getDouble() >= std::numeric_limits<int>::min() && getDouble() <= std::numeric_limits<int>::max())
@@ -164,7 +169,7 @@ void ScalarConverter::printInput()
 		else if (getInput()[0] == '+')
 			std::cout << "float : +inff" << std::endl;
 		else
-			std::cout << "float : +inff" << std::endl;
+			std::cout << "float : inff" << std::endl;
 	}
 
 	// display double
@@ -180,11 +185,11 @@ void ScalarConverter::printInput()
 	else
 	{
 		if (getInput() == "nan" || getInput() == "nanf")
-			std::cout << "float : nan" << std::endl;
+			std::cout << "double : nan" << std::endl;
 		else if (getInput()[0] == '+')
-			std::cout << "float : +inf" << std::endl;
+			std::cout << "double : +inf" << std::endl;
 		else
-			std::cout << "float : +inf" << std::endl;
+			std::cout << "double : -inf" << std::endl;
 	}
 }
 
