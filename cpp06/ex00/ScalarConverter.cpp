@@ -4,7 +4,7 @@
 ScalarConverter::ScalarConverter()
 {}
 
-ScalarConverter::ScalarConverter(ScalarConverter const &other)
+ScalarConverter::ScalarConverter(ScalarConverter const &other): input()
 {
 	if (this != &other) {}
 }
