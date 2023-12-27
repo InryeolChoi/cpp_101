@@ -11,7 +11,6 @@ void ft_plus(int &num)
 	num++;
 }
 
-
 int main()
 {
 	char arr1[] = {'A', 'B', 'C'};
@@ -28,7 +27,6 @@ int main()
 
 	std::cout << std::endl;
 
-
 	int arr2[] = {1, 2, 3};
 	std::cout << "< before >" << std::endl;
 	for (size_t i = 0; i < sizeof(arr1); i++)
@@ -39,5 +37,4 @@ int main()
 	std::cout << "< after >" << std::endl;
 	for (size_t i = 0; i < sizeof(arr1); i++)
 		std::cout << i << " : " << arr2[i] << std::endl;
-
 }

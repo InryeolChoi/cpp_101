@@ -1,39 +1,61 @@
-#include "Array.hpp"
-#include <cstdlib>
 #include <iostream>
+#include "Array.hpp"
 
-int main(void)
+#define MAX_VAL 750
+int main(int, char**)
 {
-	// 배열 체크
-	srand(time(NULL));
-	Array<int> arr1(10);
-	for (unsigned int i = 0; i < arr1.getsize(); i++)
-		arr1[i] = i;
-	std::cout << "arr1[2] : " << arr1[2] << std::endl;
+    Array<int> numbers(MAX_VAL);
+    int* mirror = new int[MAX_VAL];
+    srand(time(NULL));
+    for (int i = 0; i < MAX_VAL; i++)
+    {
+        const int value = rand();
+        numbers[i] = value;
+        mirror[i] = value;
+    }
 
-	// scope 체크
-	try 
+    // 스코프
+    {
+        Array<int> tmp = numbers;
+        Array<int> test(tmp);
+    }
+
+    for (int i = 0; i < MAX_VAL; i++) 
 	{
-		Array<int> tmp;
-		std::cout << "tmp[1] : " << tmp[1] << std::endl;
-	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
+		if (mirror[i] != numbers[i])
+		{
+			std::cerr << "didn't save the same value!!" << std::endl;
+			return 1;
+		}
 	}
 
-	// 복사생성자 체크
-	Array<int> arr2(arr1);
-	std::cout << "arr2[2] : " << arr2[2] << std::endl;
+	// 배열 범위 초과
+    try {
+        numbers[-2] = 0;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
 
-	// 대입연산자 체크
-	Array<int> arr3(5);
-	arr3 = arr2; // arr2의 배열 삭제 후 arr3 배열 이식
-	try
-	{
-		std::cout << "arr3[4] : " << arr3[4] << std::endl;
-		std::cout << "arr3[6] : " << arr3[6] << std::endl;
+	// 배열 범위 초과
+    try {
+        numbers[MAX_VAL] = 0;
+    }
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+
+    for (int i = 0; i < MAX_VAL; i++)
+		numbers[i] = rand();
+	delete [] mirror;
+
+	try {
+		Array<int> arr2(0);
+		arr2[0] = 0;
 	}
-	catch (std::exception &e) {
-		std::cout << e.what() << std::endl;
-	}
+    catch(const std::exception& e) {
+        std::cerr << e.what() << '\n';
+    }
+
+	return 0;
 }

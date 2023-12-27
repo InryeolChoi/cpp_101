@@ -10,3 +10,12 @@ void iter(T *arr, size_t arr_len, void (*fun)(T &))
 	for (size_t i = 0; i < arr_len; i++)
 		fun(arr[i]);
 }
+
+template <typename T>
+void iter(const T *arr, size_t arr_len, void (*fun)(const T &))
+{
+	if (arr == NULL || fun == NULL)
+		return ;
+	for (size_t i = 0; i < arr_len; i++)
+		fun(arr[i]);
+}
