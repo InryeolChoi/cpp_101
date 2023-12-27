@@ -19,7 +19,7 @@ class Array
 			array = new T[size];
 		}
 
-		Array(const Array &other) : size(other.size()) {
+		Array(const Array &other) : size(other.getsize()) {
 			array = NULL;
 			*this = other;
 		}
@@ -27,11 +27,11 @@ class Array
 		Array &operator=(const Array &other) {
 			if (array != NULL)
 				delete[] array;
-			if (src.size())
+			if (other.getsize())
 			{
-				size = other.size();
+				size = other.getsize();
 				array = new T[size];
-				for (unsigned int i = 0; i < size(); i++)
+				for (unsigned int i = 0; i < getsize(); i++)
 					array[i] = other.array[i];
 			}
 			return (*this);
@@ -43,7 +43,7 @@ class Array
 		}
 
 		// member function
-		unsigned int size() 
+		unsigned int getsize() const
 		{
 			return (size);
 		}
@@ -64,7 +64,6 @@ class Array
 				virtual const char *what() const throw();
 		};
 };
-
 
 template <typename T>
 const char *Array<T>::InvalidIndexException::what() const throw()
