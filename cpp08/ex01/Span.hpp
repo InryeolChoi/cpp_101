@@ -7,7 +7,7 @@ class Span
 {
 	private:
 		Span();
-		unsigned int length;
+		std::size_t length;
 		std::vector<int> vec;
 
 	public:
@@ -16,13 +16,13 @@ class Span
 		~Span();
 
 		// constructor overload
-		Span::Span(unsigned int n);
+		Span(unsigned int n);
 
 		// member function
+		std::size_t getLength();
 		void addNumber(int n);
 		std::size_t shortestSpan();
 		std::size_t longestSpan();
-		int	getLength();
 
 		// exception
 		class VectorIsFull : public std::exception
