@@ -20,13 +20,19 @@ class Span
 
 		// member function
 		void addNumber(int n);
-		int shortestSpan();
-		int longestSpan();
+		std::size_t shortestSpan();
+		std::size_t longestSpan();
+		int	getLength();
 
 		// exception
 		class VectorIsFull : public std::exception
 		{
 			public:
 				virtual const char *what() const throw();
-		}
+		};
+		class NotEnoughSize : public std::exception
+		{
+			public:
+				virtual const char *what() const throw();
+		};
 };
