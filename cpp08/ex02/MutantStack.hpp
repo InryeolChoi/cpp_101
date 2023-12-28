@@ -11,5 +11,5 @@ class MutantStack : public std::stack<T>
 		MutantStack& operator=(const MutantStack& obj) {*this = obj; return (*this);}
 		~MutantStack(void) {};
 
-		// member function
+		// member function (for iterator)
 };
