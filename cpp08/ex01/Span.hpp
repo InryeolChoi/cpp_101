@@ -24,7 +24,7 @@ class Span
 		void addNumber(int n);
 		std::size_t shortestSpan() const;
 		std::size_t longestSpan() const;
-		void randomSampling();	// 추가적인 메소드
+		void randomSampling();	// 무제한 addNumber();
 
 		// exception
 		class VectorIsFull : public std::exception
