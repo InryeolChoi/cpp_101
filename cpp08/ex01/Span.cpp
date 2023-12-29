@@ -11,7 +11,11 @@ Span::Span(const Span &other)
 
 Span &Span::operator=(const Span &other)
 {
-	if (this != &other) {}
+	if (this != &other)
+	{
+		length = other.length;
+		vec = other.vec;
+	}
 	return (*this);
 }
 
@@ -23,7 +27,7 @@ Span::Span(unsigned int n) : length(n), vec(std::vector<int>())
 {}
 
 // member function
-std::size_t Span::getLength()
+std::size_t Span::getLength() const
 {
 	return (length);
 }
@@ -36,36 +40,53 @@ void Span::addNumber(int n)
 		throw VectorIsFull();
 }
 
-std::size_t Span::shortestSpan()
+void Span::randomSampling()
 {
-	if (getLength() <= 2)
-		throw NotEnoughSize();
-	return (*(std::max_element(vec.begin(), vec.end())) - *(std::min_element(vec.begin(), vec.end())));
+	srand(time(NULL));
+	for (size_t i = 0; i < length; i++)
+		vec.push_back((rand() % 10001) + 1);
 }
 
-std::size_t Span::longestSpan()
+int	Span::checkNumber(int n)
 {
-	if (getLength() <= 2)
-		throw NotEnoughSize();
-		long ret = LONG_MAX;
-	int prev;
-	std::vector<int> tmp = vec;
+	if ()
+		throw ;
+	return (vec[n]);
+}
 
-	std::sort(tmp.begin(), tmp.end());
-	for (std::vector<int>::iterator iter = tmp.begin(); iter != tmp.end(); iter++) 
+std::size_t Span::shortestSpan() const
+{
+	if (getLength() < 2 || vec.size() < 2)
+		throw NotEnoughSize();
+
+	long tmp_span = std::numeric_limits<int>::max();
+	long shortestSpan = std::numeric_limits<int>::max();
+	std::vector<int> vec2 = vec;
+	std::vector<int>::iterator it;
+
+	std::sort(vec2.begin(), vec2.end());
+	for (it = vec2.begin(); it != vec2.end(); it++)
 	{
-		if (iter == tmp.begin()) 
-			prev = *iter;
-		else
-		{
-			if (ret > *iter - prev)
-				ret = *iter - prev;
-			prev = *iter;
-		}
+		if (it != vec2.begin())
+			tmp_span = *it - *(it - 1);
+		shortestSpan = std::min(shortestSpan, tmp_span);
 	}
-	return static_cast<std::size_t>(ret);
+	return static_cast<std::size_t>(shortestSpan);
 }
 
+std::size_t Span::longestSpan() const
+{
+	if (getLength() < 2 || vec.size() < 2)
+		throw NotEnoughSize();
+
+	long max = *(std::max_element(vec.begin(), vec.end()));
+	long min = *(std::min_element(vec.begin(), vec.end()));
+	long longestSpan = max - min;
+
+	return (static_cast<std::size_t>(longestSpan));
+}
+
+// exception
 const char *Span::VectorIsFull::what() const throw()
 {
 	return ("vector is full");

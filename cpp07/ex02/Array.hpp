@@ -1,5 +1,6 @@
- #pragma once
+#pragma once
 #include <iostream>
+#include <cstdlib>
 
 template <typename T>
 
@@ -50,6 +51,14 @@ class Array
 
 		// operator overload : []
 		T &operator[](unsigned int index) 
+		{
+			if (index >= size || array == NULL) {
+				throw InvalidIndexException();
+			}
+			return (array[index]);
+		}
+
+		const T &operator[](unsigned int index) const
 		{
 			if (index >= size || array == NULL) {
 				throw InvalidIndexException();

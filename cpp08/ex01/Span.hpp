@@ -2,6 +2,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <limits>
 
 class Span
 {
@@ -19,10 +20,11 @@ class Span
 		Span(unsigned int n);
 
 		// member function
-		std::size_t getLength();
+		std::size_t getLength() const;
 		void addNumber(int n);
-		std::size_t shortestSpan();
-		std::size_t longestSpan();
+		std::size_t shortestSpan() const;
+		std::size_t longestSpan() const;
+		void randomSampling();	// 추가적인 메소드
 
 		// exception
 		class VectorIsFull : public std::exception
