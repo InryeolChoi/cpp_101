@@ -9,8 +9,16 @@ class MutantStack : public std::stack<T>
 	public :
 		// orthodox canonical form
 		MutantStack(void) {};
-		MutantStack(const MutantStack& obj) {*this = obj;};
-		MutantStack& operator=(const MutantStack& obj) {*this = obj; return (*this);}
+		MutantStack(const MutantStack& obj) {
+			this->c = obj.c;
+		};
+
+		MutantStack& operator=(const MutantStack& obj) {
+			if (this != &obj)
+				this->c = obj.c;
+			return (*this);
+		}
+
 		~MutantStack(void) {};
 
 		// member function (for iterator)
@@ -18,15 +26,15 @@ class MutantStack : public std::stack<T>
 		iterator begin(void) { return this->c.begin(); }
 		iterator end(void) { return this->c.end(); }
 
-		typedef typename MutantStack<T>::stack::container_type::iterator const_iterator;
-		const_iterator cbegin(void) const { return (this->c.cbegin()); }
-		const_iterator cend(void) const { return (this->c.cend()); }
+		typedef typename MutantStack<T>::stack::container_type::const_iterator const_iterator;
+		const_iterator begin(void) const { return (this->c.begin()); }
+		const_iterator end(void) const { return (this->c.end()); }
 
-		typedef typename MutantStack<T>::stack::container_type::iterator reverse_iterator;
-		reverse_iterator rbegin(void) { return (this->c.rbegin()); }
-		reverse_iterator rend(void) { return (this->c.rend()); }
+		typedef typename MutantStack<T>::stack::container_type::reverse_iterator reverse_iterator;
+		reverse_iterator rbegin(void) { return (this->c.begin()); }
+		reverse_iterator rend(void) { return (this->c.end()); }
 
-		typedef typename MutantStack<T>::stack::container_type::iterator const_reverse_iterator;
-		const_reverse_iterator crbegin(void) const { return (this->c.crbegin()); }
-		const_reverse_iterator crend(void) const { return (this->c.crend()); }
+		typedef typename MutantStack<T>::stack::container_type::const_reverse_iterator const_reverse_iterator;
+		const_reverse_iterator rbegin(void) const { return (this->c.begin()); }
+		const_reverse_iterator rend(void) const { return (this->c.end()); }
 };
