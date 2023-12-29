@@ -1,5 +1,7 @@
 #pragma once
 #include <iostream>
+#include <algorithm>
+#include <stack>
 
 template <typename T>
 class MutantStack : public std::stack<T>
@@ -12,4 +14,7 @@ class MutantStack : public std::stack<T>
 		~MutantStack(void) {};
 
 		// member function (for iterator)
+		typedef typename MutantStack<T>::stack::container_type::iterator iterator;
+		iterator begin(void) { return this->c.begin(); }
+		iterator end(void) { return this->c.end(); }
 };
