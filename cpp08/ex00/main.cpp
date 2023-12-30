@@ -1,6 +1,5 @@
 #include "easyfind.hpp"
 
-#include <vector>
 int main(void)
 {
 	std::vector<int> vec(5);
