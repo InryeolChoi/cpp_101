@@ -49,8 +49,8 @@ void Span::randomSampling()
 
 int	Span::checkNumber(int n)
 {
-	if ()
-		throw ;
+	if (static_cast<size_t>(n) > length || n < 0 || !vec[n])
+		throw std::out_of_range("wrong index");
 	return (vec[n]);
 }
 
