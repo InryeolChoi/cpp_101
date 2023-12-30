@@ -1,5 +1,8 @@
 #pragma once
 #include <iostream>
+#include <cstdlib>
+#include <limits>
+#include <sstream>
 #include <fstream>
 #include <string>
 #include <map>
@@ -7,22 +10,30 @@
 class BitcoinExchange
 {
 	private:
-		fstream csv_file;
-		map<std::string, std::string> csv_map;
-
-		fstream txt_file;
-		map<std::string, std::string> txt_map;
+		std::ifstream data;
+		std::ifstream input;
+		std::map<std::string, float> data_map;
 		BitcoinExchange();
 
 	public:
+		BitcoinExchange(std::string filename);
 		BitcoinExchange(const BitcoinExchange &other);
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		// constructor overload
-		BitcoinExchange(std::string filename);
+		// member function
+		void datamap_init();
+		void input_init();
+		int input_checkdate(std::string date);
+		int input_checkvalue(float value);
+		int input_checkday(int year, int month, int day);
+		void input_match();
 
 		// Exception
+		class UnavailableToOpen : public std::exception
+		{
+			const char *what() const throw();
+		};
 		class NotVaildFile : public std::exception
 		{
 			const char *what() const throw();

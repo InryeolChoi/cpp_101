@@ -6,7 +6,13 @@ int main(int ac, char **av)
 	{
 		if (ac != 2)
 			throw BitcoinExchange::NotVaildFile();
-		std::cout << av[1] << std::endl;
+
+		// data 파일 & input 파일 열기
+		BitcoinExchange bx(av[1]);
+
+		// data를 map에 넣기
+		bx.datamap_init();
+		bx.input_init();
 	}
 	catch (std::exception &e) {
 		std::cerr << e.what() << std::endl;
