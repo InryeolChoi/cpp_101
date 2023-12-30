@@ -10,6 +10,7 @@ int main(void)
 	try
 	{
 		std::cout << std::distance(vec.begin(), easyfind(vec, 4)) << std::endl;
+		std::cout << std::distance(vec.begin(), easyfind(vec, 5)) << std::endl;
 	}
 	catch (const std::exception& e) 
 	{

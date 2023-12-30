@@ -5,18 +5,21 @@
 #include <list>
 
 template <typename T>
-class MutantStack : public std::stack<T>
+class MutantStack : public std::stack<T, std::deque<T> >
 {
 	public :
 		// orthodox canonical form
-		MutantStack(void) {};
-		MutantStack(const MutantStack& obj) {
-			this->c = obj.c;
+		MutantStack() {};
+
+		MutantStack(const MutantStack& other) : std::stack<T, std::deque<T> >(other)
+		{
+			this->c = other.c;
 		};
 
-		MutantStack& operator=(const MutantStack& obj) {
-			if (this != &obj)
-				this->c = obj.c;
+		MutantStack& operator=(const MutantStack& other) 
+		{
+			if (this != &other)
+				this->c = other.c;
 			return (*this);
 		}
 
