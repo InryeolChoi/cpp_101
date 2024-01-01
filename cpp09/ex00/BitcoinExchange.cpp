@@ -8,7 +8,9 @@ BitcoinExchange::BitcoinExchange(std::string filename)
 	data.open("./data.csv");
 	input.open(filename.c_str());
 
-	if (!data || !data.is_open() || !input || !input.is_open())
+	if (!data || !data.is_open())
+		throw UnavailableToOpen();	
+	if (!input || !input.is_open())
 		throw UnavailableToOpen();
 }
 
@@ -29,25 +31,30 @@ BitcoinExchange::~BitcoinExchange()
 	input.close();
 }
 
-// member function
+// member function : data.csv
 void BitcoinExchange::datamap_init()
 {
 	std::string tmp_line;
 
-	if (std::getline(input, tmp_line).eof())
+	if (std::getline(data, tmp_line).eof())
 		throw NotVaildFile();
-
+	if (tmp_line != "date,exchange_rate")
+		throw NotVaildFile();
 	while (std::getline(data, tmp_line))
 	{
-		if (tmp_line.compare("date,exchange_rate") == 0)
-			continue ;
 		size_t keysize = tmp_line.find(',');
 		std::string key = tmp_line.substr(0, keysize);
-		float value = std::atof(tmp_line.substr(keysize + 1).c_str());
-		data_map[key] = value;
+		std::string value = tmp_line.substr(keysize + 1);
+
+		if (check_date(key))
+			throw NotVaildFile();
+		else if (check_exRt(value))
+			throw NotVaildFile();
+		data_map[key] = std::atof(value.c_str());
 	}
 }
 
+// member function : input.txt
 void BitcoinExchange::input_init()
 {
 	std::string tmp_line;
@@ -55,65 +62,104 @@ void BitcoinExchange::input_init()
 	if (std::getline(input, tmp_line).eof())
 		throw NotVaildFile();
 
-	while (std::getline(data, tmp_line))
+	while (std::getline(input, tmp_line))
 	{
-		if (tmp_line.compare("data | value") == 0)
-			continue ;
-		else if (tmp_line.find('|') == std::string::npos)
-			std::cout << "Error : bad input =>" << tmp_line << std::endl;
+		if (tmp_line.find('|') == std::string::npos)
+			std::cout << "Error : bad input => " << tmp_line << std::endl;
 		else
 		{
 			std::string date = tmp_line.substr(0, tmp_line.find('|') - 1);
 			float value = std::atof(tmp_line.substr(tmp_line.find('|') + 1).c_str());
 			
-			if (input_checkdate(date) == 1)
+			if (check_date(date) == 1)
 				continue ;
-			else if (input_checkvalue(value) == 1)
+			else if (check_value(value) == 1)
 				continue ;
 			else
-				input_match();
+				input_match(date, value);
 		}
 	}
 }
 
-int BitcoinExchange::input_checkdate(std::string date)
+void BitcoinExchange::input_match(std::string date, float value)
+{
+	std::map<std::string, float>::const_iterator iter;
+	float result;
+	
+	iter = data_map.find(date);
+	if (iter != data_map.end())
+		result = iter->second * value;
+	else
+	{
+		iter = data_map.lower_bound(date); // date보다 큰 값 중 가장 작은 값
+		if (iter == data_map.begin())
+		{
+			std::cout << "Error : invalid date" <<std::endl;
+			return ;
+		}
+		--iter;
+		result = iter->second * value;
+	}
+
+	std::cout << date << " => ";
+	if (value == static_cast<int>(value))
+		std::cout << static_cast<int>(value) << " = " << result;
+	else
+		std::cout << value << " = " << result;
+	std::cout << std::endl;
+}
+
+
+// member function : check
+int BitcoinExchange::check_date(std::string date)
 {
 	std::istringstream ss(date);
+	int year, month, day, idx = 0;
 	std::string str;
-	int year, month, day;
-	int idx = 0;
 
 	while (std::getline(ss, str, '-'))
 	{
-		if (idx == 0) 
+		if (idx == 0)
 		{
 			std::istringstream(str) >> year;
-			if (year < 1000 || year > 9999)
-			{
-				std::cout << "Error : bad input" << std::endl;
-				return 1;
-			}
+			if (check_dateOfyear(year)) return 1;
 		}
-		else if (idx == 1) 
+		else if (idx == 1)
 		{
 			std::istringstream(str) >> month;
-			if (month < 1 || month > 12)
-			{
-				std::cout << "Error : bad input" << std::endl;
-				return 1;
-			}
+			if (check_dateOfmonth(month)) return 1;
 		}
 		else if (idx == 2)
 		{
 			std::istringstream(str) >> day;
-			if (input_checkday(year, month, day))
-				return 1;
+			if (check_dateOfday(year, month, day)) return 1;
 		}
+		idx++;
 	}
 	return 0;
 }
 
-int BitcoinExchange::input_checkday(int year, int month, int day)
+int BitcoinExchange::check_dateOfyear(int year)
+{
+	if (year < 1000 || year > 9999)
+	{
+		std::cout << "Error : bad input" << std::endl;
+		return 1;
+	}
+	return 0;
+}
+
+int BitcoinExchange::check_dateOfmonth(int month)
+{
+	if (month < 1 || month > 12)
+	{
+		std::cout << "Error : bad input" << std::endl;
+		return 1;
+	}
+	return 0;
+}
+
+int BitcoinExchange::check_dateOfday(int year, int month, int day)
 {
 	if (day < 1 || day > 31)
 	{
@@ -146,26 +192,39 @@ int BitcoinExchange::input_checkday(int year, int month, int day)
 	return 0;
 }
 
-int BitcoinExchange::input_checkvalue(float value)
+int BitcoinExchange::check_exRt(std::string exRt)
+{
+	char *ptr = NULL;
+
+	// double로 변환 시도
+	double value = std::strtod(exRt.c_str(), &ptr);
+	if (value == 0.0 && !std::isdigit(exRt[0]))
+		return 1;
+	
+	// ptr이 null이 아닌 경우 문자 포함 간주
+	if (*ptr && std::strcmp(ptr, "f"))
+		return 1;
+	
+	// 음수면 실패로 간주 
+	if (value < 0)
+		return 1;
+	return 0;
+}
+
+int BitcoinExchange::check_value(float value)
 {
 	if (value < 0)
 	{
 		std::cout << "Error: not a positive number." << std::endl;
-		return (1);
+		return 1;
 	}
 	else if (value >= static_cast<float>(std::numeric_limits<int>::max()))
 	{
 		std::cout << "Error: too large a number" << std::endl;
-		return (1);
+		return 1;
 	}	
 	else
-		return (0);
-}
-
-
-void BitcoinExchange::input_match()
-{
-	
+		return 0;
 }
 
 

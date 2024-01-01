@@ -1,11 +1,12 @@
 #pragma once
+#include <map>
 #include <iostream>
 #include <cstdlib>
+#include <cstring>
 #include <limits>
 #include <sstream>
 #include <fstream>
 #include <string>
-#include <map>
 
 class BitcoinExchange
 {
@@ -21,13 +22,21 @@ class BitcoinExchange
 		BitcoinExchange &operator=(const BitcoinExchange &other);
 		~BitcoinExchange();
 
-		// member function
+		// member function : data.csv
 		void datamap_init();
+
+		// member function : input.txt
 		void input_init();
-		int input_checkdate(std::string date);
-		int input_checkvalue(float value);
-		int input_checkday(int year, int month, int day);
-		void input_match();
+		void input_match(std::string date, float value);
+
+		// member function : check
+		int check_date(std::string date);
+		int check_dateOfyear(int year);
+		int check_dateOfmonth(int month);
+		int check_dateOfday(int year, int month, int day);
+		int check_exRt(std::string exRt);
+		int check_value(float value);
+
 
 		// Exception
 		class UnavailableToOpen : public std::exception
