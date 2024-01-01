@@ -43,9 +43,8 @@ void PmergeMe::sortVector()
 
 
 	clock_t finish = clock();
-
 	double result = static_cast<double>(finish - start);
-	displayAfter(vector, result);
+	displayAfter(vector, "vector", result);
 }
 
 
@@ -63,7 +62,7 @@ void PmergeMe::displayBefore(const T& container)
 }
 
 template <typename T>
-void PmergeMe::displayAfter(const T& container, double result)
+void PmergeMe::displayAfter(const T& container, std::string name, double result)
 {
     typename T::const_iterator it;
 
@@ -73,7 +72,7 @@ void PmergeMe::displayAfter(const T& container, double result)
     std::cout << std::endl;
 
 	std::cout << "Time to process a range of " << T.size();
-	std::cout << " elements with std::deque container: ";
+	std::cout << " elements with std::" << name << " : ";
 	std::cout << result << " us" << std::endl;
 }
 

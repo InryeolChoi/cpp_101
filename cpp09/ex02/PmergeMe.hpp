@@ -31,7 +31,7 @@ class PmergeMe
 		void displayBefore(const T& container);
 
 		template <typename T>
-		void displayAfter(const T& container, double result);
+		void displayAfter(const T& container, std::string name, double result);
 
 		// exception
 		class WrongInput : public std::exception
