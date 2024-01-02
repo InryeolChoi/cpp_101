@@ -41,7 +41,6 @@ void PmergeMe::sortVector()
 
 
 
-
 	clock_t finish = clock();
 	double result = static_cast<double>(finish - start);
 	displayAfter(vector, "vector", result);
