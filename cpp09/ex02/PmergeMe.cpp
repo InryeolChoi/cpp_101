@@ -28,24 +28,64 @@ PmergeMe::PmergeMe(int ac, char **av)
 		if (value <= 0)
 			throw WrongInput();
 		vector.push_back(value);
-		deque.push_back(value);
 		list.push_back(value);
 	}
 }
 
-// sort algorithm
-void PmergeMe::sortVector()
+// sort algorithm : vector
+void PmergeMe::caseVector()
 {
 	displayBefore(vector);
 	clock_t start = clock();
-
-
-
+	mergeVector();
+	insertVector();
 	clock_t finish = clock();
 	double result = static_cast<double>(finish - start);
 	displayAfter(vector, "vector", result);
 }
 
+void PmergeMe::mergeVector()
+{
+	for (size_t i = 0; i < vector.size(); i += 2)
+	{
+		if (vector[i] < vector[i + 1] && vector[i + 1])
+		{
+			int tmp = vector[i + 1];
+			vector[i + 1] = vector[i];
+			vector[i] = tmp;
+		}
+	}
+
+	for (size_t i = 0; i < vector.size(); i += 2)
+	{
+		if (i % 2 == 0)
+			mainVec.push_back(vector[i]);
+		else
+			pendingVec.push_back(vector[i]);
+	}
+}
+
+void PmergeMe::insertVector()
+{
+	std::vector<int> jn;
+	int idx = 0;
+
+	for (size_t i = 0; i < pendingVec.size(); i++)
+	{
+		if (i == 0)
+			jn.push_back(0);
+		else if (i == 1)
+			jn.push_back(1);
+		else
+			jn.push_back(jn[i - 1] + jn[i - 2]);
+	}
+
+	for (size_t i = 0; i < pendingVec.size(); i++)
+	{
+		int x = pendingVec[jn[i]];
+		
+	}
+}
 
 
 // member function
@@ -70,7 +110,7 @@ void PmergeMe::displayAfter(const T& container, std::string name, double result)
         std::cout << *it << " ";
     std::cout << std::endl;
 
-	std::cout << "Time to process a range of " << T.size();
+	std::cout << "Time to process a range of " << container.size();
 	std::cout << " elements with std::" << name << " : ";
 	std::cout << result << " us" << std::endl;
 }
@@ -80,4 +120,3 @@ const char *PmergeMe::WrongInput::what() const throw()
 {
 	return ("Error");
 }
-

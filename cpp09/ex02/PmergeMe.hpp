@@ -1,15 +1,14 @@
 #pragma once
 #include <iostream>
+#include <algorithm>
 #include <cstdlib>
 #include <vector>
 #include <list>
-#include <deque>
 
 class PmergeMe
 {
 	private:
-		std::vector<int> vector;
-		std::deque<int> deque;
+		std::vector<int> vector, mainVec, pendingVec;
 		std::list<int> list;
 		PmergeMe();
 
@@ -22,9 +21,9 @@ class PmergeMe
 		PmergeMe(int ac, char **av);
 
 		// sort algorithm
-		void sortVector();
-		void sortDeque();
-		void sortList();
+		void caseVector();
+		void mergeVector();
+		void insertVector();
 
 		// template function
 		template <typename T>
