@@ -35,7 +35,7 @@ class BitcoinExchange
 		int check_dateOfmonth(int month);
 		int check_dateOfday(int year, int month, int day);
 		int check_exRt(std::string exRt);
-		int check_value(float value);
+		int check_value(float value, std::string &str);
 
 
 		// Exception
@@ -44,6 +44,10 @@ class BitcoinExchange
 			const char *what() const throw();
 		};
 		class NotVaildFile : public std::exception
+		{
+			const char *what() const throw();
+		};
+		class BadInput : public std::exception
 		{
 			const char *what() const throw();
 		};

@@ -65,19 +65,29 @@ void BitcoinExchange::input_init()
 
 	while (std::getline(input, tmp_line))
 	{
-		if (tmp_line.find('|') == std::string::npos)
-			std::cout << "Error : bad input => " << tmp_line << std::endl;
-		else
-		{
-			std::string date = tmp_line.substr(0, tmp_line.find('|') - 1);
-			float value = std::atof(tmp_line.substr(tmp_line.find('|') + 1).c_str());
-			
-			if (check_date(date) == 1)
-				continue ;
-			else if (check_value(value) == 1)
-				continue ;
+		try {
+			if (tmp_line.find('|') == std::string::npos || 
+				tmp_line.find_first_of('|') != tmp_line.find_last_of('|') ||
+				tmp_line.find_first_of('|') != 11)
+				throw BadInput();
 			else
-				input_match(date, value);
+			{
+				// date와 value 자르기
+				std::string date = tmp_line.substr(0, tmp_line.find('|') - 1);
+				std::string tmp_value = tmp_line.substr(tmp_line.find('|') + 1).c_str();
+				float value = std::atof(tmp_value.c_str());
+
+				// date, value 검사
+				if (check_date(date) == 1)
+					continue ;
+				else if (check_value(value, tmp_value) == 1)
+					continue ;
+				else
+					input_match(date, value);
+			}
+		}
+		catch (std::exception &e) {
+			std::cout << e.what() << tmp_line << std::endl;
 		}
 	}
 }
@@ -144,7 +154,7 @@ int BitcoinExchange::check_dateOfyear(int year)
 {
 	if (year < 1000 || year > 9999)
 	{
-		std::cout << "Error : bad input" << std::endl;
+		std::cout << "Error : bad input (wrong year)" << std::endl;
 		return 1;
 	}
 	return 0;
@@ -154,7 +164,7 @@ int BitcoinExchange::check_dateOfmonth(int month)
 {
 	if (month < 1 || month > 12)
 	{
-		std::cout << "Error : bad input" << std::endl;
+		std::cout << "Error : bad input (wrong month)" << std::endl;
 		return 1;
 	}
 	return 0;
@@ -164,7 +174,7 @@ int BitcoinExchange::check_dateOfday(int year, int month, int day)
 {
 	if (day < 1 || day > 31)
 	{
-		std::cout << "Error : bad input" << std::endl;
+		std::cout << "Error : bad input (wrong day)" << std::endl;
 		return 1;
 	}
 	
@@ -212,8 +222,17 @@ int BitcoinExchange::check_exRt(std::string exRt)
 	return 0;
 }
 
-int BitcoinExchange::check_value(float value)
+int BitcoinExchange::check_value(float value, std::string &str)
 {
+	for (size_t i = 0; i < str.length(); i++)
+	{
+		if (!(std::isdigit(str[i]) || str[i] == ' ' || 
+			str[i] == '.' || str[i] == '-'))
+		{
+			std::cout << "Error : bad value" << std::endl;
+			return 1;
+		}
+	}
 	if (value < 0)
 	{
 		std::cout << "Error: not a positive number." << std::endl;
@@ -223,7 +242,7 @@ int BitcoinExchange::check_value(float value)
 	{
 		std::cout << "Error: too large a number" << std::endl;
 		return 1;
-	}	
+	}
 	else
 		return 0;
 }
@@ -237,4 +256,8 @@ const char *BitcoinExchange::UnavailableToOpen::what() const throw()
 const char *BitcoinExchange::NotVaildFile::what() const throw()
 {
 	return ("Error : not a valid file.");
+}
+const char *BitcoinExchange::BadInput::what() const throw()
+{
+	return ("Error : bad input => ");
 }

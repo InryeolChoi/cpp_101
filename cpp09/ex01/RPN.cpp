@@ -44,6 +44,7 @@ bool RPN::expr_checkExpr()
 	if (mathexpr.find_first_of("()") != std::string::npos)
 		return (false);
 
+	// 부호 외에 다른 문자가 있는 경우
 	for (size_t i = 0; i < mathexpr.size(); i++)
 	{
 		char ch = mathexpr[i];
@@ -53,6 +54,12 @@ bool RPN::expr_checkExpr()
 			&& ch != '/' && ch != '*')
 		return (false);
 	}
+
+	// 부호가 없고, 숫자만 있는 경우
+	if (mathexpr.find_first_of("+-*/=") == std::string::npos && 
+		mathexpr.find_first_of("0123456789") != std::string::npos)
+		return (false);	
+	
 	return (true);
 }
 
@@ -87,8 +94,12 @@ void RPN::expr_calculate()
 	{
 		std::string element = stack.top();
 		stack.pop();
+
+		// 숫자
 		if (element.find_first_of("0123456789") != std::string::npos)
 			answer.push(std::atoi(element.c_str()));
+
+		// 기호
 		else
 		{
 			if (answer.size() < 2)
@@ -100,7 +111,8 @@ void RPN::expr_calculate()
 			answer.push(expr_operate(element, x, y));
 		}
 	}
-
+	if (answer.size() > 1)
+		throw RPN::WrongExpr();
 	std::cout << answer.top() << std::endl;
 }
 
