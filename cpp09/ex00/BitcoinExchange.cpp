@@ -43,6 +43,8 @@ void BitcoinExchange::datamap_init()
 		throw NotVaildFile();
 	while (std::getline(data, tmp_line))
 	{
+		if (tmp_line.find_first_of(' ') != std::string::npos)
+			throw NotVaildFile();
 		size_t keysize = tmp_line.find(',');
 		std::string key = tmp_line.substr(0, keysize);
 		std::string value = tmp_line.substr(keysize + 1);
@@ -124,6 +126,8 @@ void BitcoinExchange::input_match(std::string date, float value)
 // member function : check
 int BitcoinExchange::check_date(std::string date)
 {
+	if (date.length() != 10)
+		return 1;
 	std::istringstream ss(date);
 	int year, month, day, idx = 0;
 	std::string str;
