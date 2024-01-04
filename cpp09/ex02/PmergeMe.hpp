@@ -3,13 +3,17 @@
 #include <algorithm>
 #include <cstdlib>
 #include <vector>
-#include <list>
+#include <deque>
+
 
 class PmergeMe
 {
 	private:
-		std::vector<int> vector, mainVec, pendingVec;
-		std::list<int> list;
+		std::vector<std::pair<int,int> > pair_vec, pair_vec2;
+		std::vector<int> vector, mainVec, pendingVec, seq;
+
+		std::deque<std::pair<int,int> > pair_deq, pair_deq2;
+		std::deque<int> deque, mainDeq, pendingDeq, seqDeq;
 		PmergeMe();
 
 	public:
@@ -20,12 +24,24 @@ class PmergeMe
 		// constructor overload
 		PmergeMe(int ac, char **av);
 
-		// sort algorithm
+		// sort algorithm : vector
 		void caseVector();
-		void mergeVector();
-		void insertVector();
+		void vec_makePair();
+		void vec_mergeSort(std::vector<std::pair<int, int> > &vec, int begin, int end);
+		void vec_merge(std::vector<std::pair<int, int> > &vec, int begin, int mid, int end);
+		void vec_mainWithPending();
+		void vec_makeSeq();
+		size_t vec_binarySearch(std::vector<int> &array, int num, int low, int high);
+		void vec_insertSort();
+
+		// sort algorithm : deque
+		// void caseDeque();
+		// void deq_makePair();
+
 
 		// template function
+		int	Jacobsthal_number(int i);
+
 		template <typename T>
 		void displayBefore(const T& container);
 

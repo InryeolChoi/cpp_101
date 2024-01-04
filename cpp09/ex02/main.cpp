@@ -10,6 +10,8 @@ int main(int ac, char **av)
 		{
 			PmergeMe pm(ac, av);
 			// pm.caseVector();
+			// pm.castDeque();
+
 		}
 	}
 	catch (std::exception &e) {
