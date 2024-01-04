@@ -75,10 +75,6 @@ void PmergeMe::vec_makePair()
 		i += 2;
 		pair_size--;
 	}
-
-	// 출력
-	// for (size_t i = 0; i < pairs.size(); i++)
-	// 	std::cout << pairs[i].first << " "<< pairs[i].second << std::endl;
 }
 
 void PmergeMe::vec_mergeSort(std::vector<std::pair<int, int> > &pairs, int begin, int end)
@@ -126,28 +122,6 @@ void PmergeMe::vec_mainWithPending()
 		mainVec.push_back(pair_vec[i].first);
 		pendingVec.push_back(pair_vec[i].second);
 	}
-
-	// 출력
-	// std::cout << "main 기준으로 정렬" << std::endl;
-	// std::cout << "main : ";
-	// for (size_t i = 0; i < mainVec.size(); i++)
-	// 	std::cout << mainVec[i] << " ";
-	// std::cout << std::endl;
-
-	// std::cout << "pending : ";
-	// for (size_t i = 0; i < pendingVec.size(); i++)
-	// 	std::cout << pendingVec[i] << " ";
-	// std::cout << std::endl;
-}
-
-int	PmergeMe::Jacobsthal_number(int i)
-{
-	if (i == 0)
-		return (0);
-	else if (i == 1)
-		return (1);
-	else
-		return Jacobsthal_number(i - 1) + 2 * Jacobsthal_number(i - 2);
 }
 
 void PmergeMe::vec_makeSeq()
@@ -163,12 +137,6 @@ void PmergeMe::vec_makeSeq()
 		jn.push_back(x);
 		idx++;
 	}
-
-	// 출력
-	// std::cout << "jn : ";
-	// for (size_t i = 0; i < jn.size(); i++)
-	// 	std::cout << jn[i] << " ";
-	// std::cout << std::endl;
 
 	// 출력 수열 (seq_order)
 	int last_pos = 0, value = 0, pos = 0;
@@ -199,12 +167,6 @@ void PmergeMe::vec_makeSeq()
 		seq.push_back(value);
 		value--;
 	}
-
-	// 출력
-	// std::cout << "seq : ";
-	// for (size_t i = 0; i < seq.size(); i++)
-	// 	std::cout << seq[i] << " ";
-	// std::cout << std::endl;
 }
 
 void PmergeMe::vec_insertSort()
@@ -240,20 +202,205 @@ size_t PmergeMe::vec_binarySearch(std::vector<int> &array, int num, int low, int
 	while (low <= high)
 	{
 		mid = low + (high - low) / 2;
-		if (num == array.at(mid))
+		if (num == array[mid])
 			return (mid);
-		if (num > array.at(mid))
+		if (num > array[mid])
 			low = mid + 1;
 		else
 			high = mid - 1;
 	}
-	if (num > array.at(mid))
+	if (num > array[mid])
+		return (mid + 1);
+	else
+		return (mid);
+}
+
+
+/* sort algorithm : Deque */
+void PmergeMe::caseDeque()
+{
+	displayBefore(deque);
+	clock_t start = clock();
+	deq_makePair();
+	deq_mergeSort(pair_deq, 0, pair_deq.size() - 1);
+	deq_mainWithPending();
+	deq_makeSeq();
+	deq_insertSort();
+	clock_t finish = clock();
+	double result = static_cast<double>(finish - start);
+	displayAfter(mainDeq, "Deque", result);
+}
+
+void PmergeMe::deq_makePair()
+{
+	int	pair_size = deque.size() / 2;
+	int i = 0;
+
+	while (pair_size != 0)
+	{
+		if (deque[i] < deque[i + 1] && deque[i + 1])
+		{
+			int tmp = deque[i + 1];
+			deque[i + 1] = deque[i];
+			deque[i] = tmp;
+		}
+		pair_deq.push_back(std::make_pair(deque[i], deque[i + 1]));
+		pair_deq2.push_back(std::make_pair(deque[i], deque[i + 1]));
+		i += 2;
+		pair_size--;
+	}
+}
+
+void PmergeMe::deq_mergeSort(std::deque<std::pair<int, int> > &deqPair, int begin, int end)
+{
+	int	mid;
+	if (begin >= end)
+		return ;
+	mid = (begin + end) / 2;
+
+	deq_mergeSort(deqPair, begin, mid);
+	deq_mergeSort(deqPair, mid + 1, end);
+	deq_merge(deqPair, begin, mid, end);
+}
+
+void PmergeMe::deq_merge(std::deque<std::pair<int, int> > &deqPair, int begin, int mid, int end)
+{
+	int i = begin, j = mid + 1, k = begin;
+	while (i <= mid && j <= end)
+	{
+		if (deqPair[i].first <= deqPair[j].first)
+			this->pair_deq2[k++] = deqPair[i++];
+		else
+			this->pair_deq2[k++] = deqPair[j++];
+	}
+	if (i > mid)
+	{
+		for (int idx = j; idx <= end; idx++)
+			this->pair_deq2[k++] = deqPair[idx];
+	}
+	else
+	{
+		for (int idx = i; idx <= mid; idx++)
+			this->pair_deq2[k++] = deqPair[idx];
+	}
+
+	// 최종 삽입
+	for (int idx = begin; idx <= end; idx++)
+		deqPair[idx] = this->pair_deq2[idx];
+}
+
+void PmergeMe::deq_mainWithPending()
+{
+	for (size_t i = 0; i < pair_deq.size(); i++)
+	{
+		mainDeq.push_back(pair_deq[i].first);
+		pendingDeq.push_back(pair_deq[i].second);
+	}
+}
+
+void PmergeMe::deq_makeSeq()
+{
+	// 야콥스탈 수 만들기
+	int idx = 0;
+	std::deque<int> jn;
+	while (1)
+	{
+		int x = Jacobsthal_number(idx);
+		if (x > static_cast<int>(pendingDeq.size()))
+			break;
+		jn.push_back(x);
+		idx++;
+	}
+
+	// 출력 수열 (seq_order)
+	int last_pos = 0, value = 0, pos = 0;
+	size_t i = 0;
+
+	while (i < pendingDeq.size())
+	{
+		if (i == 0 || i == 1)
+		{
+			i++;
+			continue;
+		}
+		value = jn[i];
+		seqDeq.push_back(value);
+		pos = value - 1;
+		while (pos > last_pos)
+		{
+			seqDeq.push_back(pos);
+			pos--;
+		}
+		last_pos = value;
+		i++;
+	}
+
+	value = pendingDeq.size();
+	while (value > last_pos)
+	{
+		seqDeq.push_back(value);
+		value--;
+	}
+}
+
+void PmergeMe::deq_insertSort()
+{
+	std::deque<int>::iterator it;
+	size_t add = 0, pos = 0;
+	int number;
+
+	for (it = seqDeq.begin(); it < seqDeq.end(); it++)
+	{
+		// 해당 숫자의 위치 찾기
+		number = pendingDeq[*it - 1];
+		pos = deq_binarySearch(mainDeq, number, 0, (*it + add));
+
+		// 위치에 따른 값 삽입
+		mainDeq.insert(mainDeq.begin() + pos, number);
+		add++;
+	}
+
+	// 전체 숫자 갯수가 홀수인 경우, 맨 마지막 원소 넣어주기
+	if (vector.size() % 2 == 1)
+	{
+		number = vector[vector.size() - 1];
+		pos = deq_binarySearch(mainDeq, number, 0, mainDeq.size() - 1);
+
+		mainDeq.insert(mainDeq.begin() + pos, number);
+	}
+
+}
+
+size_t PmergeMe::deq_binarySearch(std::deque<int> &deq, int num, int low, int high)
+{
+	int mid;
+	while (low <= high)
+	{
+		mid = low + (high - low) / 2;
+		if (num == deq[mid])
+			return (mid);
+		if (num > deq[mid])
+			low = mid + 1;
+		else
+			high = mid - 1;
+	}
+	if (num > deq[mid])
 		return (mid + 1);
 	else
 		return (mid);
 }
 
 // member function : others
+int	PmergeMe::Jacobsthal_number(int i)
+{
+	if (i == 0)
+		return (0);
+	else if (i == 1)
+		return (1);
+	else
+		return Jacobsthal_number(i - 1) + 2 * Jacobsthal_number(i - 2);
+}
+
 template <typename T>
 void PmergeMe::displayBefore(const T& container)
 {

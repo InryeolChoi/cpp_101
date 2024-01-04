@@ -9,9 +9,8 @@ int main(int ac, char **av)
 		else
 		{
 			PmergeMe pm(ac, av);
-			// pm.caseVector();
-			// pm.castDeque();
-
+			pm.caseVector();
+			pm.caseDeque();
 		}
 	}
 	catch (std::exception &e) {

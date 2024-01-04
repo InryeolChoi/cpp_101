@@ -35,11 +35,17 @@ class PmergeMe
 		void vec_insertSort();
 
 		// sort algorithm : deque
-		// void caseDeque();
-		// void deq_makePair();
+		void caseDeque();
+		void deq_makePair();
+		void deq_mergeSort(std::deque<std::pair<int, int> > &deqPair, int begin, int end);
+		void deq_merge(std::deque<std::pair<int, int> > &deqPair, int begin, int mid, int end);
+		void deq_mainWithPending();
+		void deq_makeSeq();
+		size_t deq_binarySearch(std::deque<int> &array, int num, int low, int high);
+		void deq_insertSort();
 
 
-		// template function
+		// member function : other
 		int	Jacobsthal_number(int i);
 
 		template <typename T>
