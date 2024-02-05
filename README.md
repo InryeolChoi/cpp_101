@@ -5,7 +5,7 @@
 # chapter
 * cpp00 : intro to C++
 * cpp01 : class && reference 
-* cpp02 : OCCF (class )
+* cpp02 : OCCF (Rule of 3/5/7)
 * cpp03 : class inheritance  
 * cpp04 : polymorphism & abstract class
 * cpp05 : try-catch
